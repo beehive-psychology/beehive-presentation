@@ -1,0 +1,6197 @@
+/* ============================================================
+   BEEHIVE × MUHAMMADIYAH — PROPOSAL DECK 2026
+   Design canvas: 1600 × 900 (16:9), scaled by script.js
+   Visual reference: Proposal Kemitraan Muhammadiyah.pptx
+   ============================================================ */
+
+:root {
+  --ink: #161B3F;
+  --ink-soft: #3D4256;
+  --muted: #6B6F7E;
+  --navy: #2C368B;
+  --blue: #1D5F82;
+  --teal: #10816F;
+  --green: #01A54D;
+  --green-deep: #0A7A44;
+  --lime: #7CB947;
+  --gold: #F1B12D;
+  --orange: #EE942E;
+  --rust: #B4491F;
+  --paper: #F8F7F1;
+  --white: #FFFFFF;
+  --line: #DAD9D3;
+  --scale: 1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0B1026;
+  color: var(--ink);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+p,
+figure,
+dl,
+dd,
+ol,
+ul,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================================================
+   STAGE
+   ============================================================ */
+
+.stage-wrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck-stage {
+  position: relative;
+  width: 1600px;
+  height: 900px;
+  flex: 0 0 auto;
+  transform: scale(var(--scale));
+  transform-origin: center center;
+  background: var(--paper);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.slide.active {
+  display: block;
+  animation: slide-enter 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.slide[hidden] {
+  display: none;
+}
+
+@keyframes slide-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   SHARED CHROME
+   ============================================================ */
+
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 13px;
+  background: linear-gradient(
+    90deg,
+    #2C368B 0%,
+    #215584 18%,
+    #177079 32%,
+    #01A54D 50%,
+    #5DB449 62%,
+    #9CC541 74%,
+    #CCD734 88%,
+    #FAED21 100%
+  );
+  z-index: 5;
+}
+
+.kicker {
+  position: absolute;
+  left: 107px;
+  top: 103px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3.4px;
+  line-height: 1;
+  color: #12864A;
+  text-transform: uppercase;
+}
+
+.kicker.gold {
+  color: var(--gold);
+}
+
+.slide-title {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 137px;
+  font-size: 50px;
+  line-height: 1.17;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.slide-title.light {
+  color: var(--paper);
+}
+
+.lead {
+  font-size: 26.7px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+.body {
+  font-size: 20px;
+  line-height: 1.32;
+  color: #4B5060;
+}
+
+.note {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.s-footer {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  bottom: 47px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+/* Page badge — [01-17] inside a fine ring */
+.page-badge {
+  position: absolute;
+  right: 46px;
+  bottom: 32px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 82px;
+  border: 1px solid rgba(22, 27, 63, 0.22);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  box-shadow: 0 6px 18px rgba(22, 27, 63, 0.05);
+}
+
+.page-badge::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(22, 27, 63, 0.09);
+  border-radius: 50%;
+}
+
+.page-badge::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1.5px solid transparent;
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  transform: rotate(-38deg);
+}
+
+.slide.cover .page-badge,
+.slide.dark .page-badge,
+.slide.close .page-badge {
+  border-color: rgba(248, 247, 241, 0.38);
+  background: #2C368B;
+  color: var(--paper);
+  box-shadow: none;
+}
+
+.slide.cover .page-badge::before,
+.slide.dark .page-badge::before,
+.slide.close .page-badge::before {
+  border-color: rgba(248, 247, 241, 0.14);
+}
+
+.slide.cover .page-badge {
+  bottom: 24px;
+}
+
+.slide.close .page-badge {
+  bottom: 32px;
+}
+
+.light-footer {
+  color: #AAB0D2;
+}
+
+/* ============================================================
+   CARDS & CALLOUTS
+   ============================================================ */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  border-radius: 10px;
+  padding: 27px 27px 24px;
+  box-shadow:
+    0 1px 2px rgba(22, 27, 63, 0.05),
+    0 10px 26px rgba(22, 27, 63, 0.05);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 10px 10px 0 0;
+  background: var(--accent, var(--navy));
+}
+
+.accent-navy   { --accent: #2C368B; }
+.accent-blue   { --accent: #1D5F82; }
+.accent-teal   { --accent: #10816F; }
+.accent-green  { --accent: #01A54D; }
+.accent-green-solid { --accent: #01A54D; }
+.accent-lime   { --accent: #7CB947; }
+.accent-gold   { --accent: #F1B12D; }
+.accent-orange { --accent: #EE942E; }
+
+.card h3 {
+  font-size: 26.7px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--ink);
+}
+
+.stat {
+  display: block;
+  font-size: 73.3px;
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+
+.stat-sm {
+  display: block;
+  font-size: 46.7px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.index {
+  display: block;
+  font-size: 20px;
+  line-height: 1;
+  color: #63687A;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.mini-label {
+  display: block;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: #5A5F73;
+  text-transform: uppercase;
+}
+
+.blue-label {
+  color: #53619C;
+}
+
+.callout {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  border-radius: 10px;
+  background: var(--navy);
+  color: var(--paper);
+  padding: 26px 33px;
+}
+
+.callout-label {
+  flex: 0 0 223px;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.callout-text {
+  font-size: 23.3px;
+  line-height: 1.32;
+  color: var(--paper);
+}
+
+.callout.soft {
+  background: #E8F1EA;
+}
+
+.callout.soft .callout-label {
+  color: #12864A;
+}
+
+.callout.soft .callout-text {
+  color: var(--ink);
+}
+
+/* ============================================================
+   01 · COVER
+   ============================================================ */
+
+.slide.cover {
+  background: #2C368B;
+  color: var(--paper);
+}
+
+.rainbow-stripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #1D5F82 0%,
+    #10816F 12%,
+    #01A54D 22%,
+    #7CB947 31%,
+    #BCD03B 40%,
+    #FAED21 48%,
+    #F4CE2A 56%,
+    #F1B12D 64%,
+    #EE942E 72%,
+    #EC782E 80%,
+    #EA572D 89%,
+    #E8242A 100%
+  );
+  z-index: 10;
+}
+
+.cover-header {
+  position: absolute;
+  left: 96px;
+  top: 98px;
+  z-index: 4;
+}
+
+.header-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  color: var(--paper);
+}
+
+.header-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.cover-content {
+  position: absolute;
+  left: 96px;
+  top: 205px;
+  width: 700px;
+  z-index: 4;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 23px;
+}
+
+.eyebrow-line {
+  width: 34px;
+  height: 4px;
+  border-radius: 10px;
+  background: var(--gold);
+}
+
+.cover h1 {
+  font-size: 64px;
+  line-height: 0.99;
+  letter-spacing: -2.5px;
+  font-weight: 800;
+  color: var(--paper);
+}
+
+.partner-title {
+  font-size: 41px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--gold);
+  margin-top: 12px;
+}
+
+.partner-title span {
+  color: #D7DBF2;
+  padding: 0 4px;
+}
+
+.title-accent {
+  width: 75px;
+  height: 5px;
+  border-radius: 10px;
+  background: var(--gold);
+  margin-top: 20px;
+}
+
+.subtitle {
+  max-width: 590px;
+  margin-top: 19px;
+  font-size: 20px;
+  line-height: 1.45;
+  font-weight: 700;
+  color: var(--paper);
+}
+
+.description {
+  max-width: 585px;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #D7DBF2;
+}
+
+.cover-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  background: var(--paper);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tag-icon {
+  color: var(--gold);
+  font-size: 16px;
+}
+
+.cover-visual {
+  position: absolute;
+  left: 867px;
+  top: 125px;
+  width: 625px;
+  z-index: 3;
+}
+
+.cover-visual img {
+  width: 100%;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.22));
+}
+
+.cover-footer {
+  position: absolute;
+  left: 96px;
+  right: 96px;
+  bottom: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-top: 1px solid rgba(215, 219, 242, 0.35);
+  padding-top: 13px;
+  z-index: 4;
+}
+
+.footer-brand strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+
+.footer-brand p {
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.35;
+  color: #D7DBF2;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-line {
+  width: 40px;
+  height: 3px;
+  border-radius: 5px;
+  background: var(--gold);
+}
+
+.slide-number {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--paper);
+}
+
+.corner-decoration {
+  position: absolute;
+  right: -110px;
+  bottom: -120px;
+  width: 190px;
+  height: 190px;
+  border: 25px solid rgba(241, 177, 45, 0.14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ============================================================
+   02 · LATAR BELAKANG
+   ============================================================ */
+
+.s2-cards {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 298px;
+  height: 255px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.s2-cards .card {
+  padding-top: 28px;
+}
+
+.s2-cards .body {
+  margin-top: 0;
+}
+
+.s2-callout {
+  top: 593px;
+  height: 151px;
+}
+
+/* ============================================================
+   03 · TENTANG BEEHIVE
+   ============================================================ */
+
+.s3-copy {
+  width: 869px;
+}
+
+.s3-copy .lead {
+  position: absolute;
+  top: 291px;
+  left: 107px;
+  width: 845px;
+}
+
+.s3-stats {
+  position: absolute;
+  left: 107px;
+  top: 399px;
+  width: 869px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.s3-stats .card {
+  height: 147px;
+  padding: 26px 27px 22px;
+}
+
+.s3-stats .body {
+  margin-top: 0;
+}
+
+.s3-photo {
+  position: absolute;
+  left: 977px;
+  top: 107px;
+  width: 517px;
+  height: 660px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(22, 27, 63, 0.14);
+}
+
+.s3-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ============================================================
+   04 · RINGKASAN TAWARAN
+   ============================================================ */
+
+.summary-list {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 240px;
+}
+
+.summary-row {
+  display: grid;
+  grid-template-columns: 257px 1fr;
+  align-items: center;
+  min-height: 74.5px;
+  border-bottom: 1px solid var(--line);
+}
+
+.summary-row:last-child {
+  border-bottom: 0;
+}
+
+.summary-row dt {
+  font-size: 26.7px;
+  font-weight: 700;
+  color: #12864A;
+}
+
+.summary-row dd {
+  font-size: 26.7px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* ============================================================
+   05 · TUJUH LAYANAN
+   ============================================================ */
+
+.product-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 241px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 192px;
+  gap: 20px;
+}
+
+.product-grid .card {
+  padding: 25px 27px 20px;
+}
+
+.product-grid h3 {
+  margin-bottom: 8px;
+}
+
+.product-grid .body {
+  font-size: 20px;
+}
+
+.promo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--green);
+  color: var(--white);
+  padding: 28px 27px;
+  box-shadow:
+    0 1px 2px rgba(1, 65, 32, 0.08),
+    0 12px 28px rgba(1, 65, 32, 0.12);
+}
+
+.promo-card h3 {
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.promo-card p {
+  font-size: 20px;
+  line-height: 1.35;
+  color: #E7F6EE;
+}
+
+.s5 .note {
+  top: 680px;
+}
+
+/* ============================================================
+   06 · REKOMENDASI PER JENJANG
+   ============================================================ */
+
+.stage-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 241px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stage-grid .card {
+  height: 248px;
+  padding-top: 26px;
+}
+
+.stage-grid h3 {
+  margin-bottom: 4px;
+}
+
+.stage-grid .mini-label {
+  margin-bottom: 10px;
+  font-size: 19px;
+  letter-spacing: 1.5px;
+}
+
+.report-snippet {
+  position: absolute;
+  left: 107px;
+  top: 529px;
+  width: 672px;
+  height: 217px;
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #F5BA25;
+  box-shadow: 0 12px 28px rgba(120, 80, 0, 0.16);
+}
+
+.report-major {
+  flex: 0 0 205px;
+  padding: 23px 20px;
+}
+
+.report-major p {
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #2B2415;
+}
+
+.report-major strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  color: #1F1B10;
+}
+
+.report-detail {
+  flex: 1;
+  min-width: 0;
+  padding: 17px 18px 15px 0;
+}
+
+.report-label {
+  margin-bottom: 7px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  color: #2B2415;
+}
+
+.report-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 45px;
+  margin-bottom: 6px;
+  padding: 0 12px;
+  border-radius: 6px;
+  background: var(--white);
+}
+
+.report-row:last-child {
+  margin-bottom: 0;
+}
+
+.report-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  border-radius: 50%;
+  background: #1F1F1F;
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.report-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.report-name strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #161616;
+}
+
+.report-name small {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.2;
+  color: #777777;
+}
+
+.report-meter {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 128px;
+  flex: 0 0 128px;
+}
+
+.report-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 99px;
+  background: #E8E3D6;
+  overflow: hidden;
+}
+
+.report-track i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: #2B2B2B;
+}
+
+.report-meter > span:last-child {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1F1F1F;
+}
+
+.ptma-card {
+  position: absolute;
+  left: 805px;
+  top: 536px;
+  width: 688px;
+  height: 203px;
+  padding: 20px 27px;
+  border-radius: 10px;
+  border-left: 6px solid var(--green);
+  background: var(--white);
+  box-shadow:
+    0 1px 2px rgba(22, 27, 63, 0.05),
+    0 10px 26px rgba(22, 27, 63, 0.05);
+}
+
+.ptma-label {
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #12864A;
+}
+
+.ptma-card h3 {
+  margin: 5px 0 7px;
+  font-size: 26.7px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.ptma-card .body {
+  line-height: 1.32;
+}
+
+/* ============================================================
+   07 · DESAIN PEMANTAUAN
+   ============================================================ */
+
+.timeline {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 298px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 27px;
+  list-style: none;
+}
+
+.step-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46.7px;
+  height: 46.7px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 23.3px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.dot-navy  { background: #2C368B; }
+.dot-blue  { background: #1D5F82; }
+.dot-teal  { background: #10816F; }
+.dot-green { background: #01A54D; }
+.dot-rust  { background: #B4491F; }
+
+.step-month {
+  margin: 12px 0 8px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--rust);
+}
+
+.timeline h3,
+.roadmap h3 {
+  font-size: 26.7px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 7px;
+}
+
+.timeline .body,
+.roadmap .body {
+  line-height: 1.32;
+}
+
+.s7-note {
+  top: 560px;
+  height: 119px;
+}
+
+.s7-note .callout-label {
+  flex-basis: 223px;
+  line-height: 1.25;
+}
+
+/* ============================================================
+   08 · ALUR SISTEM
+   ============================================================ */
+
+.source-card {
+  position: absolute;
+  left: 108px;
+  top: 317px;
+  width: 331px;
+  height: 248px;
+  padding: 26px 27px;
+  border: 1.5px solid var(--navy);
+  border-radius: 10px;
+  background: #FBFBF7;
+}
+
+.source-card h3 {
+  margin: 5px 0 10px;
+  font-size: 26.7px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.engine-card {
+  position: absolute;
+  left: 606px;
+  top: 347px;
+  width: 331px;
+  height: 188px;
+  padding: 26px 27px;
+  border-radius: 10px;
+  background: var(--navy);
+  color: var(--paper);
+  box-shadow: 0 16px 34px rgba(22, 27, 63, 0.22);
+}
+
+.engine-card .mini-label {
+  color: var(--gold);
+}
+
+.engine-card h3 {
+  margin: 5px 0 9px;
+  font-size: 26.7px;
+  line-height: 1.2;
+  color: var(--paper);
+}
+
+.engine-card p:last-child {
+  font-size: 20px;
+  line-height: 1.32;
+  color: #D7DBF2;
+}
+
+.flow-arrow {
+  position: absolute;
+  width: 92px;
+  height: 46px;
+}
+
+.flow-arrow svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.arrow-a { left: 465px; top: 445px; }
+.arrow-b { left: 963px; top: 457px; }
+
+.arrow-label {
+  position: absolute;
+  width: 200px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #12864A;
+}
+
+.arrow-label-a { left: 423px; top: 386px; width: 176px; }
+.arrow-label-b { left: 929px; top: 376px; width: 160px; }
+
+.output-stack {
+  position: absolute;
+  left: 1103px;
+  top: 241px;
+  width: 390px;
+  display: grid;
+  gap: 13px;
+}
+
+.output-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 125px;
+  padding: 17px 20px 17px 27px;
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow:
+    0 1px 2px rgba(22, 27, 63, 0.05),
+    0 10px 26px rgba(22, 27, 63, 0.05);
+}
+
+.output-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 6px;
+  border-radius: 10px 0 0 10px;
+  background: var(--accent, var(--navy));
+}
+
+.output-card h3 {
+  margin-bottom: 4px;
+  font-size: 26.7px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.output-card .body {
+  line-height: 1.3;
+}
+
+.option-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 682px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 21px;
+}
+
+.option-grid article {
+  min-height: 107px;
+  padding: 22px 27px;
+  border: 1.5px dashed #9FA39D;
+  border-radius: 10px;
+}
+
+.option-grid h3 {
+  margin-bottom: 4px;
+  font-size: 26.7px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* ============================================================
+   09 · PELAKSANAAN
+   ============================================================ */
+
+.exec-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 241px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.exec-grid .card {
+  height: 276px;
+  padding-top: 26px;
+}
+
+.exec-grid h3 {
+  margin: 4px 0 10px;
+}
+
+.bullets {
+  list-style: disc;
+  padding-left: 21px;
+}
+
+.bullets li {
+  font-size: 20px;
+  line-height: 1.42;
+  color: #4B5060;
+  margin-bottom: 3px;
+}
+
+.s9-quality {
+  top: 557px;
+  height: 119px;
+}
+
+/* ============================================================
+   10 · HASIL & PEMANTAUAN
+   ============================================================ */
+
+.s10 .kicker {
+  top: 166px;
+}
+
+.s10 .slide-title {
+  top: 200px;
+  width: 600px;
+  right: auto;
+}
+
+.feature-list {
+  position: absolute;
+  left: 107px;
+  top: 405px;
+  width: 575px;
+  list-style: none;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 27px;
+  margin-bottom: 30px;
+}
+
+.feature-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 5px;
+  height: 63px;
+  border-radius: 9px;
+  background: var(--accent, var(--navy));
+}
+
+.feature-list h3 {
+  margin-bottom: 5px;
+  font-size: 26.7px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.feature-list .body {
+  line-height: 1.35;
+}
+
+.dashboard-shot {
+  position: absolute;
+  left: 718px;
+  top: 184px;
+  width: 775px;
+  height: 505px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow:
+    0 1px 2px rgba(22, 27, 63, 0.06),
+    0 18px 44px rgba(22, 27, 63, 0.12);
+}
+
+.dashboard-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   11 · KERAHASIAAN & ETIKA
+   ============================================================ */
+
+.ethics-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 241px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.ethics-grid .card {
+  height: 158px;
+  padding-top: 26px;
+}
+
+.ethics-grid h3 {
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+   12 · INVESTASI
+   ============================================================ */
+
+.slide.dark {
+  background: #2C368B;
+  color: var(--paper);
+}
+
+.slide.dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 100% at 100% 0%, rgba(255, 255, 255, 0.07), transparent 55%),
+    radial-gradient(80% 80% at 0% 100%, rgba(0, 0, 0, 0.10), transparent 60%);
+  pointer-events: none;
+}
+
+.price-row {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 298px;
+  display: flex;
+  align-items: stretch;
+}
+
+.price-box {
+  flex: 1;
+  height: 143.7px;
+  padding: 26px 33px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.price-box strong {
+  display: block;
+  font-size: 46.7px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--paper);
+}
+
+.price-box p {
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #D7DBF2;
+}
+
+.price-box.result {
+  background: var(--gold);
+}
+
+.price-box.result strong {
+  color: var(--ink);
+}
+
+.price-box.result p {
+  color: #3E3413;
+}
+
+.operator {
+  flex: 0 0 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 53px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.s12-callout {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 481px;
+  height: 154px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 33px;
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.big-number {
+  flex: 0 0 auto;
+  font-size: 86.7px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -3px;
+  color: #0A7A44;
+}
+
+.big-number .approx {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 0.6em;
+  letter-spacing: 0;
+  vertical-align: 0.18em;
+}
+
+.s12-callout p {
+  font-size: 26.7px;
+  line-height: 1.35;
+  color: #4B5060;
+}
+
+/* ============================================================
+   13 · BAGI HASIL
+   ============================================================ */
+
+.split-bar {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 241px;
+  height: 125px;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.split-bar > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 27px;
+}
+
+.split-green {
+  flex: 40;
+  background: #01A54D;
+  color: var(--white);
+}
+
+.split-gold {
+  flex: 25;
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.split-navy {
+  flex: 35;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.split-bar strong {
+  font-size: 46.7px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.split-bar span {
+  margin-top: 6px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.share-grid,
+.school-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 406px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.share-grid .card {
+  height: 242px;
+  padding: 32px 27px 24px;
+}
+
+.share-label {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  color: #12864A;
+  text-transform: uppercase;
+}
+
+.share-grid .card:nth-child(2) .share-label {
+  color: var(--rust);
+}
+
+.share-grid .card:nth-child(3) .share-label {
+  color: var(--navy);
+}
+
+.amount {
+  display: block;
+  margin: 7px 0 6px;
+  font-size: 46.7px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.green-text  { color: #0A7A44; }
+.orange-text { color: var(--rust); }
+.navy-text   { color: var(--navy); }
+
+.share-sub {
+  margin-bottom: 4px;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ============================================================
+   14 · SKEMA BERTINGKAT
+   ============================================================ */
+
+.table-wrap {
+  position: absolute;
+  left: 108px;
+  right: 107px;
+  top: 300px;
+}
+
+.benefit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.benefit-table th,
+.benefit-table td {
+  height: 46px;
+  padding: 0 12px;
+  border: 1px solid #DCDAD3;
+}
+
+.benefit-table thead th {
+  background: #E7E9F5;
+  font-size: 21px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.benefit-table thead th:first-child,
+.benefit-table tbody th {
+  text-align: left;
+}
+
+.benefit-table tbody th {
+  font-weight: 400;
+}
+
+.benefit-table tbody td {
+  text-align: right;
+}
+
+.benefit-table .total-row th,
+.benefit-table .total-row td {
+  background: #E7F3E9;
+}
+
+.s14-note {
+  top: 706px;
+  right: 320px;
+  font-size: 20px;
+}
+
+/* ============================================================
+   15 · ILUSTRASI PER SEKOLAH
+   ============================================================ */
+
+.school-grid {
+  top: 298px;
+}
+
+.school-grid .card {
+  height: 242px;
+  padding: 26px 27px 22px;
+}
+
+.school-grid .share-label {
+  color: #5A5F73;
+}
+
+.school-grid .share-sub {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.school-grid .body {
+  margin-top: 10px;
+}
+
+.school-grid .body b {
+  color: var(--ink);
+}
+
+.s15-callout {
+  top: 580px;
+  height: 119px;
+}
+
+/* ============================================================
+   16 · LANGKAH BERIKUTNYA
+   ============================================================ */
+
+.roadmap-line {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 241px;
+  height: 2px;
+  background: linear-gradient(90deg, #2C368B 0%, #1D5F82 38%, #10816F 62%, #01A54D 100%);
+}
+
+.roadmap {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 284px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 17px;
+  list-style: none;
+}
+
+.roadmap .step-month {
+  margin-top: 12px;
+}
+
+.s16-needs {
+  top: 546px;
+  height: 119px;
+}
+
+.s16-needs .callout-label {
+  flex-basis: 246px;
+  line-height: 1.25;
+}
+
+/* ============================================================
+   17 · COBA TES (QR)
+   ============================================================ */
+
+.qr-kicker {
+  left: 0;
+  right: 0;
+  top: 108px;
+  text-align: center;
+}
+
+.qr-title {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 148px;
+  text-align: center;
+  font-size: 64px;
+  line-height: 1.06;
+  font-weight: 700;
+  letter-spacing: -1.4px;
+  color: var(--ink);
+}
+
+.qr-title span {
+  color: #0A7A44;
+}
+
+.qr-rule {
+  position: absolute;
+  left: 50%;
+  top: 241px;
+  width: 84px;
+  height: 5px;
+  border-radius: 10px;
+  background: var(--gold);
+  transform: translateX(-50%);
+}
+
+.qr-lead {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 272px;
+  text-align: center;
+  font-size: 26.7px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+.qr-halo {
+  position: absolute;
+  left: 50%;
+  top: 565px;
+  width: 512px;
+  height: 512px;
+  border: 1px solid rgba(22, 27, 63, 0.10);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.qr-halo::before,
+.qr-halo::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(22, 27, 63, 0.06);
+  border-radius: 50%;
+}
+
+.qr-halo::before {
+  inset: 26px;
+}
+
+.qr-halo::after {
+  inset: 52px;
+  border-color: rgba(241, 177, 45, 0.24);
+}
+
+.qr-card {
+  position: absolute;
+  left: 50%;
+  top: 350px;
+  width: 432px;
+  height: 432px;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgba(22, 27, 63, 0.08);
+  border-radius: 28px;
+  background: var(--white);
+  box-shadow:
+    0 2px 4px rgba(22, 27, 63, 0.06),
+    0 26px 64px rgba(22, 27, 63, 0.15);
+  transform: translateX(-50%);
+}
+
+.qr-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+}
+
+/* ============================================================
+   18 · PENUTUP
+   ============================================================ */
+
+.slide.close {
+  background: #2C368B;
+  color: var(--paper);
+}
+
+.slide.close .rainbow-stripe {
+  width: 20px;
+}
+
+.close-content {
+  position: absolute;
+  left: 107px;
+  top: 155px;
+  width: 780px;
+}
+
+.close-content h2 {
+  font-size: 70px;
+  line-height: 1.09;
+  letter-spacing: -1.8px;
+  font-weight: 700;
+  color: var(--paper);
+}
+
+.contact-grid {
+  position: absolute;
+  left: 0;
+  top: 325px;
+  width: 720px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 140px;
+  row-gap: 32px;
+}
+
+.contact-label {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: #B9BFE0;
+}
+
+.contact-value {
+  margin-top: 4px;
+  font-size: 26.7px;
+  line-height: 1.3;
+  color: var(--paper);
+}
+
+.contact-value.small {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.tagline {
+  position: absolute;
+  left: 0;
+  top: 528px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: var(--gold);
+}
+
+.close-visual {
+  position: absolute;
+  left: 867px;
+  top: 125px;
+  width: 625px;
+  z-index: 2;
+}
+
+.close-visual img {
+  width: 100%;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.22));
+}
+
+/* ============================================================
+   DECK CONTROLS
+   ============================================================ */
+
+.deck-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(11, 16, 38, 0.74);
+  backdrop-filter: blur(10px);
+  color: var(--white);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+body:hover .deck-nav,
+.deck-nav:focus-within {
+  opacity: 1;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.nav-btn:disabled {
+  opacity: 0.32;
+  cursor: default;
+  background: transparent;
+}
+
+.nav-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.nav-count {
+  min-width: 58px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #C9CEE4;
+}
+
+.progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 101;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #2C368B, #10816F, #01A54D, #F1B12D);
+  transition: width 0.35s ease;
+}
+
+@media (hover: none) {
+  .deck-nav {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY / PRINT
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@page {
+  size: 1600px 900px;
+  margin: 0;
+}
+
+@media print {
+  body {
+    overflow: visible;
+    background: var(--white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .stage-wrap {
+    position: static;
+    display: block;
+  }
+
+  .deck-stage {
+    width: 1600px;
+    height: auto;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .slide {
+    position: relative;
+    display: block !important;
+    width: 1600px;
+    height: 900px;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .slide[hidden] {
+    display: block !important;
+  }
+
+  .deck-nav,
+  .progress {
+    display: none;
+  }
+}
+
+
+/* =====================================================
+   BEEHIVE × MUHAMMADIYAH
+   COVER SLIDE — VISUAL REDESIGN
+   ===================================================== */
+
+/* 1. Background dengan kedalaman warna */
+.slide.cover {
+  background-color: #2C368B;
+  background-image:
+    radial-gradient(
+      ellipse at 92% 8%,
+      rgba(241, 177, 45, 0.25),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 12% 92%,
+      rgba(1, 165, 77, 0.23),
+      transparent 35%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(29, 95, 130, 0.32),
+      transparent 55%
+    );
+  overflow: hidden;
+}
+
+/* 2. Lingkaran besar sebagai bingkai visual */
+.slide.cover::before {
+  content: "";
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  top: 75px;
+  right: 5px;
+  border: 2px solid rgba(248, 247, 241, 0.16);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 28px rgba(241, 177, 45, 0.07),
+    0 0 0 65px rgba(248, 247, 241, 0.035),
+    0 0 0 105px rgba(1, 165, 77, 0.055);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 3. Pola titik geometris di sisi kanan */
+.slide.cover::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 190px;
+  right: 65px;
+  bottom: 75px;
+  background-image: radial-gradient(
+    rgba(248, 247, 241, 0.48) 2px,
+    transparent 2px
+  );
+  background-size: 22px 22px;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 4. Memperkuat tampilan gambar kolase */
+.slide.cover .cover-visual {
+  z-index: 3;
+  filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.18));
+}
+
+.slide.cover .cover-visual img {
+  filter:
+    drop-shadow(0 18px 26px rgba(0, 0, 0, 0.24));
+}
+
+/* 5. Memperjelas garis aksen cover */
+.slide.cover .rainbow-stripe {
+  width: 16px;
+  box-shadow: 4px 0 22px rgba(241, 177, 45, 0.18);
+}
+
+/* 6. Ornamen sudut bawah */
+.slide.cover .corner-decoration {
+  width: 240px;
+  height: 240px;
+  right: -125px;
+  bottom: -145px;
+  border-width: 32px;
+  border-color: rgba(241, 177, 45, 0.19);
+}
+
+
+/* COVER TYPOGRAPHY ENHANCEMENT */
+
+/* Judul utama */
+.slide.cover .cover-content h1 {
+  font-size: 76px;
+  line-height: 1.04;
+  letter-spacing: -2.8px;
+}
+
+/* Judul mitra / subjudul */
+.slide.cover .partner-title {
+  font-size: 47px;
+  line-height: 1.18;
+  letter-spacing: -1.2px;
+  margin-top: 16px;
+}
+
+/* Label kecil di atas judul */
+.slide.cover .eyebrow {
+  font-size: 13px;
+  letter-spacing: 3.2px;
+}
+
+/* ==================================================
+   BEEHIVE × MUHAMMADIYAH
+   PREMIUM TYPOGRAPHY — MANROPE + DM SANS
+   ================================================== */
+
+/* Font utama untuk seluruh isi presentasi */
+body,
+button,
+input,
+textarea,
+select {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Font khusus untuk judul dan heading */
+h1,
+h2,
+h3,
+.slide-title,
+.cover h1,
+.partner-title {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* ============================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 02 — CREATIVE EDITORIAL 2.0
+   BACKGROUND ONLY — CONTENT UNTOUCHED
+   ============================================================ */
+
+.slide.paper.s2 {
+  background-color: #F6F4ED !important;
+
+  background-image:
+
+    /* 01 — Bidang geometris navy kiri atas */
+    linear-gradient(
+      145deg,
+      rgba(44,54,139,.17) 0 8%,
+      transparent 8.2% 100%
+    ),
+
+    /* 02 — Layer diagonal biru */
+    linear-gradient(
+      145deg,
+      transparent 0 10%,
+      rgba(29,95,130,.12) 10.2% 15%,
+      transparent 15.2% 100%
+    ),
+
+    /* 03 — Potongan geometris hijau */
+    linear-gradient(
+      145deg,
+      transparent 0 18%,
+      rgba(1,165,77,.075) 18.2% 22%,
+      transparent 22.2% 100%
+    ),
+
+    /* 04 — Bidang diagonal gold kanan */
+    linear-gradient(
+      135deg,
+      transparent 0 72%,
+      rgba(241,177,45,.21) 72.2% 80%,
+      transparent 80.2% 100%
+    ),
+
+    /* 05 — Bidang biru muda kanan */
+    linear-gradient(
+      135deg,
+      transparent 0 78%,
+      rgba(29,95,130,.10) 78.2% 86%,
+      transparent 86.2% 100%
+    ),
+
+    /* 06 — Gelombang abstrak kanan */
+    radial-gradient(
+      ellipse at 112% 47%,
+      transparent 0 22%,
+      rgba(1,165,77,.11) 22.3% 27%,
+      transparent 27.3% 34%,
+      rgba(44,54,139,.08) 34.3% 39%,
+      transparent 39.3%
+    ),
+
+    /* 07 — Gelombang kiri bawah */
+    radial-gradient(
+      ellipse at -12% 108%,
+      rgba(44,54,139,.13) 0 18%,
+      rgba(29,95,130,.08) 18.3% 23%,
+      transparent 23.3%
+    ),
+
+    /* 08 — Pita lengkung gold */
+    radial-gradient(
+      ellipse at 42% 115%,
+      transparent 0 25%,
+      rgba(241,177,45,.13) 25.3% 27%,
+      transparent 27.3% 33%,
+      rgba(1,165,77,.07) 33.3% 35%,
+      transparent 35.3%
+    ),
+
+    /* 09 — Pola titik kanan bawah */
+    radial-gradient(
+      circle,
+      rgba(44,54,139,.24) 1.8px,
+      transparent 2.4px
+    ),
+
+    /* 10 — Pola titik kiri tengah */
+    radial-gradient(
+      circle,
+      rgba(1,165,77,.20) 1.5px,
+      transparent 2px
+    ),
+
+    /* 11 — Pola garis diagonal */
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 11px,
+      rgba(44,54,139,.045) 12px,
+      transparent 13px 24px
+    ),
+
+    /* 12 — Tekstur garis horizontal */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 31px,
+      rgba(29,95,130,.025) 32px,
+      transparent 33px 64px
+    ),
+
+    /* 13 — Aksen cahaya lavender */
+    radial-gradient(
+      ellipse at 80% 8%,
+      rgba(125,133,202,.17),
+      transparent 30%
+    ),
+
+    /* 14 — Aksen cahaya hijau */
+    radial-gradient(
+      ellipse at 10% 70%,
+      rgba(1,165,77,.075),
+      transparent 27%
+    ),
+
+    /* 15 — Dasar background */
+    linear-gradient(
+      125deg,
+      #F8F7F1 0%,
+      #F0F0F7 48%,
+      #F7F4E9 100%
+    ) !important;
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    120px 120px,
+    95px 95px,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+
+  background-position:
+    center,
+    center,
+    center,
+    center,
+    center,
+    center,
+    center,
+    center,
+    right 20px bottom 15px,
+    left 10px center,
+    center,
+    center,
+    center,
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    repeat,
+    repeat,
+    repeat,
+    repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat;
+}
+
+/* ==================================================
+   SLIDE 03 — SPACING FOTO DAN KONTEN
+   ================================================== */
+
+.slide.s3 .s3-photo {
+  transform: translateX(24px);
+}
+
+/* ============================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 03 — BOLD EDITORIAL IDENTITY
+   BACKGROUND ONLY
+   ============================================================ */
+
+.slide.paper.s3 {
+  background-color: #F8F7F1 !important;
+  background-image:
+
+    /* Bidang navy besar di sudut kanan atas */
+    linear-gradient(
+      135deg,
+      transparent 0 70%,
+      rgba(44,54,139,.95) 70.2% 100%
+    ),
+
+    /* Potongan gold */
+    linear-gradient(
+      135deg,
+      transparent 0 77%,
+      #F1B12D 77.2% 81%,
+      transparent 81.2%
+    ),
+
+    /* Bidang hijau kiri bawah */
+    linear-gradient(
+      45deg,
+      rgba(1,165,77,.16) 0 11%,
+      transparent 11.2% 100%
+    ),
+
+    /* Lapisan biru diagonal */
+    linear-gradient(
+      115deg,
+      transparent 0 43%,
+      rgba(29,95,130,.07) 43.2% 57%,
+      transparent 57.2%
+    ),
+
+    /* Lengkungan besar seperti orbit */
+    radial-gradient(
+      ellipse at 100% 5%,
+      transparent 0 25%,
+      rgba(241,177,45,.75) 25.2% 25.8%,
+      transparent 26% 31%,
+      rgba(1,165,77,.55) 31.2% 31.8%,
+      transparent 32%
+    ),
+
+    /* Pola sarang lebah abstrak */
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 0 13px,
+      rgba(44,54,139,.12) 13.5px 14.5px,
+      transparent 15px
+    ),
+
+    /* Cahaya lembut di tengah */
+    radial-gradient(
+      ellipse at 48% 45%,
+      rgba(125,133,202,.13),
+      transparent 42%
+    ),
+
+    /* Garis-garis editorial */
+    repeating-linear-gradient(
+      120deg,
+      transparent 0 22px,
+      rgba(44,54,139,.035) 23px,
+      transparent 24px 44px
+    ),
+
+    /* Dasar */
+    linear-gradient(
+      115deg,
+      #F8F7F1 0%,
+      #F2F1EA 55%,
+      #EDEEF5 100%
+    ) !important;
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    90px 78px,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+
+  background-position:
+    center,
+    center,
+    center,
+    center,
+    center,
+    right 5px top 5px,
+    center,
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    repeat,
+    no-repeat,
+    repeat,
+    no-repeat;
+}
+
+/* ============================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 04 — BOLD FLOWING DUNES
+   LARGE ORGANIC WAVE COMPOSITION
+   ============================================================ */
+
+.slide.paper.s4 {
+  background-color: #F8F7F1 !important;
+
+  background-image:
+
+    /* 01 — Ombak champagne dari kiri */
+    radial-gradient(
+      ellipse 83% 66% at -12% 111%,
+      #E5CDA8 0 49%,
+      transparent 49.5%
+    ),
+
+    /* 02 — Ombak terracotta lembut */
+    radial-gradient(
+      ellipse 75% 59% at -5% 116%,
+      #CFA77D 0 48%,
+      transparent 48.5%
+    ),
+
+    /* 03 — Gelombang cream di atas lapisan kiri */
+    radial-gradient(
+      ellipse 76% 55% at 8% 112%,
+      #F0DFC1 0 48%,
+      transparent 48.5%
+    ),
+
+    /* 04 — Ombak besar kanan */
+    radial-gradient(
+      ellipse 78% 79% at 112% 107%,
+      #D9D6E8 0 48%,
+      transparent 48.5%
+    ),
+
+    /* 05 — Lapisan gold kanan */
+    radial-gradient(
+      ellipse 72% 69% at 111% 111%,
+      #DDBB7F 0 48%,
+      transparent 48.5%
+    ),
+
+    /* 06 — Lapisan sage */
+    radial-gradient(
+      ellipse 66% 57% at 108% 116%,
+      #AFC4A9 0 48%,
+      transparent 48.5%
+    ),
+
+    /* 07 — Garis aliran champagne */
+    radial-gradient(
+      ellipse 85% 70% at -12% 111%,
+      transparent 0 55%,
+      rgba(255,255,255,.85) 55.3% 56%,
+      transparent 56.3% 63%,
+      rgba(181,135,78,.50) 63.3% 64%,
+      transparent 64.3%
+    ),
+
+    /* 08 — Lengkungan atas kanan */
+    radial-gradient(
+      ellipse 36% 35% at 106% -13%,
+      transparent 0 63%,
+      rgba(1,165,77,.28) 63.5% 66%,
+      transparent 66.5% 75%,
+      rgba(241,177,45,.42) 75.5% 78%,
+      transparent 78.5%
+    ),
+
+    /* 09 — Bidang diagonal navy sebagai aksen */
+    linear-gradient(
+      135deg,
+      transparent 0 87%,
+      rgba(44,54,139,.65) 87.2% 90%,
+      transparent 90.2%
+    ),
+
+    /* 10 — Cahaya dasar */
+    linear-gradient(
+      125deg,
+      #FAF8F2 0%,
+      #F3F0E9 50%,
+      #F7F1E7 100%
+    ) !important;
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ============================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 05 — DIGITAL SPECTRUM
+   PREMIUM VISUAL REDESIGN
+   ============================================================ */
+
+/* 1. BACKGROUND */
+.slide.paper.s5 {
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #F8F7F1 !important;
+
+  background-image:
+    /* Bidang diagonal navy di kanan atas */
+    linear-gradient(
+      135deg,
+      transparent 0 78%,
+      rgba(44,54,139,.12) 78.2% 84%,
+      transparent 84.2%
+    ),
+
+    /* Lapisan gold */
+    linear-gradient(
+      135deg,
+      transparent 0 83%,
+      rgba(241,177,45,.25) 83.2% 89%,
+      transparent 89.2%
+    ),
+
+    /* Gelombang besar di kiri bawah */
+    radial-gradient(
+      ellipse 65% 55% at -12% 112%,
+      rgba(1,165,77,.16) 0 48%,
+      transparent 48.5%
+    ),
+
+    radial-gradient(
+      ellipse 57% 48% at -8% 112%,
+      rgba(29,95,130,.16) 0 48%,
+      transparent 48.5%
+    ),
+
+    /* Lengkungan digital di kanan */
+    radial-gradient(
+      ellipse 40% 65% at 112% 55%,
+      transparent 0 60%,
+      rgba(44,54,139,.14) 60.5% 64%,
+      transparent 64.5% 73%,
+      rgba(241,177,45,.30) 73.5% 77%,
+      transparent 77.5%
+    ),
+
+    /* Garis geometris halus */
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 35px,
+      rgba(44,54,139,.035) 36px,
+      transparent 37px 70px
+    ),
+
+    linear-gradient(
+      125deg,
+      #F8F7F1 0%,
+      #F0F1F7 52%,
+      #F7F3E9 100%
+    ) !important;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* 2. KARTU LAYANAN */
+.s5 .product-grid .card {
+  --product-accent: #2C368B;
+
+  position: relative;
+  overflow: hidden;
+
+  background: #FFFFFF !important;
+  border: 1px solid rgba(44,54,139,.10);
+  border-top: 6px solid var(--product-accent);
+  border-radius: 15px;
+
+  padding: 25px 27px 20px;
+
+  box-shadow:
+    0 3px 8px rgba(22,27,63,.035),
+    0 13px 28px rgba(22,27,63,.075);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+/* Aksen warna setiap layanan */
+.s5 .product-grid .card.accent-navy {
+  --product-accent: #2C368B;
+}
+
+.s5 .product-grid .card.accent-blue {
+  --product-accent: #1D5F82;
+}
+
+.s5 .product-grid .card.accent-teal {
+  --product-accent: #10816F;
+}
+
+.s5 .product-grid .card.accent-green {
+  --product-accent: #01A54D;
+}
+
+.s5 .product-grid .card.accent-lime {
+  --product-accent: #7CB947;
+}
+
+.s5 .product-grid .card.accent-gold {
+  --product-accent: #F1B12D;
+}
+
+.s5 .product-grid .card.accent-orange {
+  --product-accent: #EE942E;
+}
+
+/* Nomor layanan */
+.s5 .product-grid .card .index {
+  color: var(--product-accent);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+}
+
+/* Judul layanan */
+.s5 .product-grid .card h3 {
+  color: #161B3F;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+}
+
+/* Deskripsi layanan */
+.s5 .product-grid .card .body {
+  color: #6B6F7E;
+  line-height: 1.4;
+}
+
+/* 3. KARTU PROMO */
+.s5 .product-grid .promo-card {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2C368B 0%,
+      #263E83 52%,
+      #1D5F82 100%
+    ) !important;
+
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 15px;
+
+  padding: 28px 27px;
+
+  box-shadow:
+    0 5px 12px rgba(44,54,139,.13),
+    0 18px 32px rgba(44,54,139,.20);
+}
+
+/* Garis gold di atas kartu promo */
+.s5 .product-grid .promo-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7px;
+
+  background: linear-gradient(
+    90deg,
+    #F1B12D 0%,
+    #F8D98A 45%,
+    #01A54D 100%
+  );
+}
+
+/* Ornamen geometris pada kartu promo */
+.s5 .product-grid .promo-card::after {
+  content: "";
+  position: absolute;
+
+  width: 190px;
+  height: 190px;
+  right: -100px;
+  bottom: -105px;
+
+  border: 2px solid rgba(255,255,255,.18);
+  border-radius: 38px;
+  transform: rotate(35deg);
+
+  box-shadow:
+    0 0 0 17px rgba(241,177,45,.08),
+    0 0 0 38px rgba(255,255,255,.045);
+}
+
+.s5 .product-grid .promo-card h3,
+.s5 .product-grid .promo-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.s5 .product-grid .promo-card h3 {
+  color: #FFFFFF;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+}
+
+.s5 .product-grid .promo-card p {
+  color: #E8ECFF;
+  line-height: 1.4;
+}
+
+/* 4. CATATAN BAWAH */
+.s5 .note {
+  color: #6B6F7E;
+}
+
+/* 5. PENYESUAIAN RESPONSIVE */
+@media (hover: hover) {
+  .s5 .product-grid .card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 8px 16px rgba(22,27,63,.06),
+      0 18px 34px rgba(22,27,63,.11);
+  }
+}
+
+/* ============================================================
+   SLIDE 06 — ARCHITECTURAL BLUEPRINT
+   BACKGROUND REDESIGN
+   ============================================================ */
+
+.slide.paper.s6 {
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #F8F7F1 !important;
+
+  background-image:
+
+    /* Panel arsitektural besar di kiri */
+    linear-gradient(
+      90deg,
+      rgba(44,54,139,.075) 0 17%,
+      transparent 17.2% 100%
+    ),
+
+    /* Bidang gold berbentuk sudut */
+    linear-gradient(
+      135deg,
+      transparent 0 75%,
+      rgba(241,177,45,.22) 75.2% 82%,
+      transparent 82.2%
+    ),
+
+    /* Bidang hijau geometris */
+    linear-gradient(
+      45deg,
+      transparent 0 88%,
+      rgba(1,165,77,.16) 88.2% 94%,
+      transparent 94.2%
+    ),
+
+    /* Garis perspektif kanan */
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 17px,
+      rgba(44,54,139,.13) 18px,
+      transparent 19px 36px
+    ),
+
+    /* Panel transparan di kanan atas */
+    linear-gradient(
+      90deg,
+      transparent 0 91%,
+      rgba(29,95,130,.09) 91.2% 100%
+    ),
+
+    /* Bingkai arsitektural */
+    linear-gradient(
+      90deg,
+      transparent 0 4.5%,
+      rgba(44,54,139,.13) 4.6% 4.75%,
+      transparent 4.85% 100%
+    ),
+
+    /* Garis horizontal dekoratif */
+    linear-gradient(
+      0deg,
+      transparent 0 94%,
+      rgba(44,54,139,.12) 94.1% 94.3%,
+      transparent 94.4%
+    ),
+
+    /* Dasar cream */
+    linear-gradient(
+      120deg,
+      #F8F7F1 0%,
+      #F4F1E9 55%,
+      #F7F5EF 100%
+    ) !important;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+/* Garis bingkai dekoratif bagian atas */
+.slide.paper.s6::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  width: 290px;
+  height: 115px;
+
+  border-left: 2px solid rgba(44,54,139,.17);
+  border-bottom: 2px solid rgba(44,54,139,.17);
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 48%,
+      rgba(241,177,45,.18) 48.5% 52%,
+      transparent 52.5%
+    );
+
+  pointer-events: none;
+}
+
+/* Detail bidang geometris kanan bawah */
+.slide.paper.s6::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 245px;
+  height: 180px;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0 49%,
+      rgba(44,54,139,.12) 49.3% 50%,
+      transparent 50.3%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0 64%,
+      rgba(1,165,77,.16) 64.3% 78%,
+      transparent 78.3%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0 82%,
+      rgba(241,177,45,.30) 82.3% 100%
+    );
+
+  pointer-events: none;
+}
+
+/* Pastikan konten tetap berada di atas dekorasi */
+.slide.paper.s6 > * {
+  z-index: 1;
+}
+
+/* =========================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 07 — BOTANICAL EDITORIAL
+   Desain background + timeline cards + layout
+   ========================================================= */
+
+/* 1. BACKGROUND */
+.slide.paper.s7 {
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #F8F7F1 !important;
+  background-image:
+    radial-gradient(ellipse 75% 55% at -24% 112%, #A8B99A 0 48%, transparent 48.5%),
+    radial-gradient(ellipse 67% 48% at -20% 110%, #D5C99F 0 48%, transparent 48.5%),
+    radial-gradient(ellipse 58% 41% at -15% 108%, #E8DDC5 0 48%, transparent 48.5%),
+    radial-gradient(ellipse 54% 74% at 116% 49%, #C5D0BB 0 48%, transparent 48.5%),
+    radial-gradient(ellipse 46% 66% at 114% 47%, #E4D9BC 0 48%, transparent 48.5%),
+    radial-gradient(ellipse 34% 35% at 105% -8%,
+      transparent 0 57%,
+      rgba(1,165,77,.24) 57.5% 61%,
+      transparent 61.5% 70%,
+      rgba(241,177,45,.40) 70.5% 74%,
+      transparent 74.5%),
+    linear-gradient(125deg,#FAF8F1 0%,#F5F3EA 55%,#F8F6EF 100%) !important;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+/* Ornamen organik kiri */
+.slide.paper.s7::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: -95px;
+  top: 115px;
+  width: 250px;
+  height: 330px;
+  border: 2px solid rgba(91,122,79,.22);
+  border-radius: 48% 52% 45% 55%;
+  transform: rotate(-28deg);
+  box-shadow:
+    0 0 0 17px rgba(168,185,154,.09),
+    0 0 0 38px rgba(213,201,159,.09);
+  pointer-events: none;
+}
+
+/* Ornamen organik kanan bawah */
+.slide.paper.s7::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -75px;
+  bottom: -90px;
+  width: 270px;
+  height: 230px;
+  border: 2px solid rgba(91,122,79,.22);
+  border-radius: 55% 45% 60% 40%;
+  transform: rotate(25deg);
+  box-shadow:
+    0 0 0 20px rgba(168,185,154,.12),
+    0 0 0 44px rgba(213,201,159,.12);
+  pointer-events: none;
+}
+
+/* Pastikan isi slide berada di atas ornamen */
+.slide.paper.s7 > * {
+  z-index: 1;
+}
+
+
+/* 2. TIMELINE CARDS */
+.s7 .timeline {
+  align-items: stretch;
+  gap: 20px;
+}
+
+.s7 .timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: 13px;
+  row-gap: 12px;
+  align-content: start;
+
+  min-width: 0;
+  min-height: 225px;
+  padding: 23px 20px 22px;
+
+  background: #FFFFFF;
+  border: 1px solid rgba(44,54,139,.10);
+  border-top: 7px solid var(--step-accent);
+  border-radius: 14px;
+
+  box-shadow:
+    0 3px 8px rgba(22,27,63,.035),
+    0 13px 28px rgba(22,27,63,.075);
+
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* Warna aksen masing-masing tahap */
+.s7 .timeline li:nth-child(1) {
+  --step-accent: #2C368B;
+}
+
+.s7 .timeline li:nth-child(2) {
+  --step-accent: #1D5F82;
+}
+
+.s7 .timeline li:nth-child(3) {
+  --step-accent: #10816F;
+}
+
+.s7 .timeline li:nth-child(4) {
+  --step-accent: #01A54D;
+}
+
+
+/* 3. NOMOR TAHAP */
+.s7 .timeline .step-dot {
+  grid-column: 1;
+  grid-row: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  align-self: center;
+
+  border: 4px solid rgba(255,255,255,.8);
+  box-shadow: 0 3px 9px rgba(22,27,63,.13);
+
+  font-family: 'Manrope', sans-serif;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+
+/* 4. BULAN DI SAMPING NOMOR */
+.s7 .timeline .step-month {
+  grid-column: 2;
+  grid-row: 1;
+
+  margin: 0;
+  align-self: center;
+
+  color: var(--step-accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: .3px;
+}
+
+
+/* 5. JUDUL TAHAP */
+.s7 .timeline h3 {
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  margin: 0;
+  align-self: end;
+
+  color: #161B3F;
+  font-family: 'Manrope', sans-serif;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+
+/* 6. DESKRIPSI TAHAP */
+.s7 .timeline .body {
+  grid-column: 1 / -1;
+  grid-row: 3;
+
+  margin: 0;
+  align-self: start;
+
+  color: #626779;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+
+/* 7. CATATAN VALIDITAS */
+.s7 .s7-note {
+  top: 580px;
+
+  border-radius: 12px;
+  border-left: 7px solid #F1B12D;
+
+  background: linear-gradient(
+    110deg,
+    #FFFFFF,
+    #FFFDF7
+  );
+
+  box-shadow:
+    0 3px 8px rgba(22,27,63,.035),
+    0 10px 24px rgba(22,27,63,.06);
+}
+
+.s7 .s7-note .callout-label {
+  flex-basis: 223px;
+  line-height: 1.25;
+}
+
+
+/* 8. EFEK HOVER */
+@media (hover: hover) {
+  .s7 .timeline li:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 8px 16px rgba(22,27,63,.06),
+      0 18px 34px rgba(22,27,63,.11);
+  }
+}
+
+/* =========================================================
+   SLIDE 08 — OPTION CARDS REDESIGN
+   Opsi A: Digital Integration
+   Opsi B: Smart Access
+   ========================================================= */
+
+.s8 .option-grid article {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-height: 107px;
+  padding: 22px 27px;
+
+  border: 1px solid transparent;
+  border-radius: 15px;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+/* OPSI A — INTEGRASI API PENUH */
+.s8 .option-grid article:first-child {
+  background:
+    linear-gradient(110deg, #202967 0%, #2C368B 68%, #35458F 100%);
+
+  border: 1px solid rgba(255,255,255,.12);
+  border-left: 7px solid #01A54D;
+
+  box-shadow:
+    0 5px 12px rgba(22,27,63,.10),
+    0 15px 30px rgba(22,27,63,.13);
+}
+
+.s8 .option-grid article:first-child h3 {
+  position: relative;
+  z-index: 2;
+  color: #FFFFFF;
+}
+
+.s8 .option-grid article:first-child .body {
+  position: relative;
+  z-index: 2;
+  color: #DCE2FA;
+}
+
+/* Ornamen garis koneksi digital */
+.s8 .option-grid article:first-child::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 22px;
+  top: -48px;
+
+  width: 155px;
+  height: 155px;
+
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 17px rgba(255,255,255,.035),
+    0 0 0 36px rgba(255,255,255,.025);
+}
+
+.s8 .option-grid article:first-child::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 42px;
+  bottom: -37px;
+
+  width: 95px;
+  height: 95px;
+
+  border: 2px solid rgba(1,165,77,.55);
+  transform: rotate(45deg);
+}
+
+
+/* OPSI B — TAUTAN & QR */
+.s8 .option-grid article:last-child {
+  background:
+    linear-gradient(115deg, #FFFFFF 0%, #FBF8EE 65%, #F4EBD6 100%);
+
+  border: 1px solid rgba(194,153,77,.30);
+  border-right: 7px solid #F1B12D;
+
+  box-shadow:
+    0 5px 12px rgba(91,69,31,.05),
+    0 15px 30px rgba(91,69,31,.09);
+}
+
+.s8 .option-grid article:last-child h3 {
+  position: relative;
+  z-index: 2;
+  color: #252B62;
+}
+
+.s8 .option-grid article:last-child .body {
+  position: relative;
+  z-index: 2;
+  color: #656575;
+}
+
+/* Ornamen geometris sudut */
+.s8 .option-grid article:last-child::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -30px;
+  top: -58px;
+
+  width: 155px;
+  height: 155px;
+
+  border: 2px solid rgba(241,177,45,.45);
+  transform: rotate(45deg);
+  border-radius: 18px;
+
+  box-shadow:
+    0 0 0 12px rgba(241,177,45,.07);
+}
+
+.s8 .option-grid article:last-child::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 33px;
+  bottom: -24px;
+
+  width: 65px;
+  height: 65px;
+
+  border: 2px solid rgba(44,54,139,.16);
+  border-radius: 50%;
+}
+
+
+/* HOVER EFFECT */
+@media (hover: hover) {
+  .s8 .option-grid article:hover {
+    transform: translateY(-4px);
+  }
+
+  .s8 .option-grid article:first-child:hover {
+    box-shadow: 0 12px 30px rgba(22,27,63,.20);
+  }
+
+  .s8 .option-grid article:last-child:hover {
+    box-shadow: 0 12px 30px rgba(91,69,31,.14);
+  }
+}
+
+/* =========================================================
+   SLIDE 08 — ABSTRACT 3D LAYERS
+   ========================================================= */
+
+.slide.paper.s8 {
+  isolation: isolate;
+  overflow: hidden;
+
+  background-color: #F8F7F1 !important;
+  background-image:
+    /* bidang navy besar kiri atas */
+    linear-gradient(
+      145deg,
+      #2C368B 0 9%,
+      transparent 9.2% 100%
+    ),
+
+    /* bidang hijau bertumpuk */
+    linear-gradient(
+      145deg,
+      transparent 0 11%,
+      #A9C5A8 11.2% 18%,
+      transparent 18.2% 100%
+    ),
+
+    /* bidang emas kanan */
+    linear-gradient(
+      135deg,
+      transparent 0 76%,
+      #EBCB82 76.2% 84%,
+      transparent 84.2% 100%
+    ),
+
+    /* lapisan biru kanan bawah */
+    linear-gradient(
+      135deg,
+      transparent 0 83%,
+      #B8C8D6 83.2% 91%,
+      transparent 91.2% 100%
+    ),
+
+    /* bidang organik tengah kanan */
+    radial-gradient(
+      ellipse 35% 65% at 108% 44%,
+      #DDE5D7 0 55%,
+      transparent 55.5%
+    ),
+
+    /* lapisan warna utama */
+    linear-gradient(
+      120deg,
+      #FAF8F2 0%,
+      #F3F0E8 52%,
+      #F8F5ED 100%
+    ) !important;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+/* Ornamen bidang bertumpuk kiri */
+.slide.paper.s8::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  width: 310px;
+  height: 310px;
+  left: -155px;
+  top: 190px;
+
+  border-radius: 48% 52% 65% 35%;
+  background: linear-gradient(
+    145deg,
+    rgba(1,165,77,.18),
+    rgba(29,95,130,.12)
+  );
+
+  box-shadow:
+    22px 24px 0 rgba(241,177,45,.12),
+    44px 48px 0 rgba(44,54,139,.07);
+
+  transform: rotate(-24deg);
+  pointer-events: none;
+}
+
+/* Ornamen lengkungan kanan bawah */
+.slide.paper.s8::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  width: 300px;
+  height: 240px;
+  right: -145px;
+  bottom: -130px;
+
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(44,54,139,.15),
+    rgba(1,165,77,.17)
+  );
+
+  box-shadow:
+    -20px -17px 0 rgba(241,177,45,.12),
+    -40px -34px 0 rgba(29,95,130,.08);
+
+  transform: rotate(-18deg);
+  pointer-events: none;
+}
+
+/* Konten berada di atas ornamen */
+.slide.paper.s8 > * {
+  z-index: 1;
+}
+
+/* =========================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 09 — SOFT LAYERED WAVES
+   ========================================================= */
+
+.slide.paper.s9 {
+  isolation: isolate;
+  overflow: hidden;
+
+  background-color: #F8F7F1 !important;
+
+  background-image:
+
+    /* Bidang abstrak navy kiri atas */
+    linear-gradient(
+      145deg,
+      rgba(44,54,139,.15) 0 9%,
+      transparent 9.2% 100%
+    ),
+
+    /* Lapisan hijau lembut di kiri */
+    linear-gradient(
+      145deg,
+      transparent 0 12%,
+      rgba(1,165,77,.10) 12.2% 17%,
+      transparent 17.2% 100%
+    ),
+
+    /* Gelombang sage bagian bawah */
+    radial-gradient(
+      ellipse 90% 65% at 5% 119%,
+      #D6E0D0 0 57%,
+      transparent 57.5%
+    ),
+
+    /* Gelombang hijau yang lebih dalam */
+    radial-gradient(
+      ellipse 82% 55% at 18% 120%,
+      #B7C9B1 0 56%,
+      transparent 56.5%
+    ),
+
+    /* Gelombang krem keemasan */
+    radial-gradient(
+      ellipse 78% 57% at 88% 118%,
+      #EAD9B9 0 55%,
+      transparent 55.5%
+    ),
+
+    /* Lapisan biru di kanan bawah */
+    radial-gradient(
+      ellipse 69% 49% at 110% 119%,
+      #C4D0D9 0 55%,
+      transparent 55.5%
+    ),
+
+    /* Lengkungan tipis sebagai pemisah gelombang */
+    radial-gradient(
+      ellipse 88% 62% at 4% 119%,
+      transparent 0 59%,
+      rgba(255,255,255,.75) 59.3% 60%,
+      transparent 60.3%
+    ),
+
+    /* Warna dasar */
+    linear-gradient(
+      120deg,
+      #FAF8F2 0%,
+      #F4F2EA 53%,
+      #F8F5ED 100%
+    ) !important;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+
+/* Ornamen abstrak berbentuk lengkungan kiri */
+.slide.paper.s9::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  width: 260px;
+  height: 310px;
+
+  left: -145px;
+  top: 270px;
+
+  border-radius: 48% 52% 58% 42%;
+
+  background: linear-gradient(
+    145deg,
+    rgba(44,54,139,.10),
+    rgba(29,95,130,.06)
+  );
+
+  transform: rotate(32deg);
+
+  pointer-events: none;
+}
+
+
+/* Ornamen bidang lembut kanan atas */
+.slide.paper.s9::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  width: 210px;
+  height: 250px;
+
+  right: -125px;
+  top: 115px;
+
+  border-radius: 55% 45% 40% 60%;
+
+  background: linear-gradient(
+    145deg,
+    rgba(241,177,45,.15),
+    rgba(1,165,77,.08)
+  );
+
+  transform: rotate(-28deg);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 10 — DIGITAL EDITORIAL SHOWCASE
+   ========================================================= */
+
+/* 1. BACKGROUND */
+.slide.paper.s10 {
+  isolation: isolate;
+  overflow: hidden;
+
+  background-color: #F8F7F1 !important;
+
+  background-image:
+    /* Bidang navy kiri atas */
+    linear-gradient(
+      135deg,
+      rgba(44,54,139,.16) 0 8%,
+      transparent 8.2% 100%
+    ),
+
+    /* Aksen hijau */
+    linear-gradient(
+      135deg,
+      transparent 0 12%,
+      rgba(1,165,77,.12) 12.2% 17%,
+      transparent 17.2% 100%
+    ),
+
+    /* Warna lembut di sekitar dashboard */
+    radial-gradient(
+      ellipse 48% 66% at 83% 48%,
+      rgba(44,54,139,.12),
+      transparent 75%
+    ),
+
+    radial-gradient(
+      ellipse 35% 45% at 100% 10%,
+      rgba(1,165,77,.13),
+      transparent 75%
+    ),
+
+    /* Lapisan emas bawah */
+    radial-gradient(
+      ellipse 60% 45% at 78% 112%,
+      rgba(241,177,45,.22),
+      transparent 72%
+    ),
+
+    /* Warna dasar */
+    linear-gradient(
+      125deg,
+      #FAF8F2 0%,
+      #F1F0F5 52%,
+      #F8F3E9 100%
+    ) !important;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+
+/* 2. ORNAMEN ABSTRAK KANAN */
+.slide.paper.s10::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  width: 570px;
+  height: 570px;
+
+  right: -245px;
+  top: 90px;
+
+  border-radius: 43% 57% 54% 46%;
+
+  background: linear-gradient(
+    145deg,
+    rgba(44,54,139,.12),
+    rgba(29,95,130,.07)
+  );
+
+  box-shadow:
+    -28px 28px 0 rgba(1,165,77,.08),
+    -55px 55px 0 rgba(241,177,45,.10);
+
+  transform: rotate(-18deg);
+  pointer-events: none;
+}
+
+
+/* 3. ORNAMEN ORGANIK KIRI BAWAH */
+.slide.paper.s10::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  width: 270px;
+  height: 220px;
+
+  left: -135px;
+  bottom: -105px;
+
+  border-radius: 45% 55% 35% 65%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(1,165,77,.18),
+    rgba(241,177,45,.16)
+  );
+
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+
+/* 4. KARTU INFORMASI */
+.s10 .feature-list {
+  display: grid;
+  gap: 15px;
+}
+
+.s10 .feature-list li {
+  position: relative;
+  overflow: hidden;
+
+  margin: 0;
+  padding: 17px 20px 17px 25px;
+
+  min-height: 91px;
+
+  background: rgba(255,255,255,.96);
+
+  border: 1px solid rgba(44,54,139,.08);
+  border-radius: 13px;
+
+  box-shadow:
+    0 3px 8px rgba(22,27,63,.035),
+    0 10px 24px rgba(22,27,63,.065);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+
+/* Garis warna berada di sisi kiri */
+.s10 .feature-list li::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 7px;
+  height: auto;
+
+  border-radius: 10px 0 0 10px;
+
+  background: var(--accent, var(--navy));
+}
+
+
+/* Judul kartu */
+.s10 .feature-list h3 {
+  margin-bottom: 5px;
+
+  color: #161B3F;
+  font-family: 'Manrope', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+
+/* Deskripsi kartu */
+.s10 .feature-list .body {
+  color: #626779;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+
+/* 5. DASHBOARD SHOWCASE */
+.s10 .dashboard-shot {
+  border: 7px solid rgba(255,255,255,.95);
+  border-radius: 17px;
+
+  box-shadow:
+    0 4px 12px rgba(22,27,63,.06),
+    0 20px 45px rgba(22,27,63,.15),
+    0 35px 70px rgba(22,27,63,.07);
+}
+
+
+/* 6. EFEK HOVER */
+@media (hover: hover) {
+  .s10 .feature-list li:hover {
+    transform: translateX(5px);
+
+    box-shadow:
+      0 7px 15px rgba(22,27,63,.06),
+      0 15px 30px rgba(22,27,63,.10);
+  }
+
+  .s10 .dashboard-shot:hover {
+    box-shadow:
+      0 8px 20px rgba(22,27,63,.09),
+      0 24px 50px rgba(22,27,63,.17);
+  }
+}
+
+/* =========================================================
+   BEEHIVE × MUHAMMADIYAH
+   SLIDE 11 — PRIVACY & TRUST
+   ELEGANT SHIELD
+   ========================================================= */
+
+/* 1. BACKGROUND */
+.slide.paper.s11 {
+  isolation: isolate;
+  overflow: hidden;
+
+  background-color: #F8F7F1 !important;
+
+  background-image:
+    /* bidang navy di kiri atas */
+    linear-gradient(
+      135deg,
+      rgba(44,54,139,.15) 0 8%,
+      transparent 8.2% 100%
+    ),
+
+    /* aksen hijau */
+    linear-gradient(
+      135deg,
+      transparent 0 12%,
+      rgba(1,165,77,.11) 12.2% 18%,
+      transparent 18.2% 100%
+    ),
+
+    /* bidang lembut kanan tengah */
+    radial-gradient(
+      ellipse 42% 50% at 105% 45%,
+      rgba(168,185,154,.22),
+      transparent 72%
+    ),
+
+    /* lapisan emas bawah */
+    radial-gradient(
+      ellipse 75% 43% at 15% 115%,
+      #E9D7B4 0 48%,
+      transparent 48.5%
+    ),
+
+    /* lapisan sage bawah */
+    radial-gradient(
+      ellipse 70% 48% at 65% 120%,
+      #C9D8C4 0 48%,
+      transparent 48.5%
+    ),
+
+    /* bidang biru kanan bawah */
+    radial-gradient(
+      ellipse 55% 42% at 112% 112%,
+      #C5D1DC 0 48%,
+      transparent 48.5%
+    ),
+
+    /* warna dasar */
+    linear-gradient(
+      125deg,
+      #FAF8F2 0%,
+      #F2F1EB 52%,
+      #F8F4EB 100%
+    ) !important;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+
+/* 2. ORNAMEN PERISAI KANAN BAWAH */
+.slide.paper.s11::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  right: 38px;
+  bottom: 42px;
+
+  width: 300px;
+  height: 235px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(44,54,139,.10),
+    rgba(1,165,77,.13)
+  );
+
+  clip-path: polygon(
+    50% 0,
+    94% 17%,
+    88% 65%,
+    50% 100%,
+    12% 65%,
+    6% 17%
+  );
+
+  filter: drop-shadow(0 12px 18px rgba(22,27,63,.08));
+  pointer-events: none;
+}
+
+
+/* 3. ORNAMEN LENGKUNG KIRI BAWAH */
+.slide.paper.s11::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  left: -150px;
+  bottom: -170px;
+
+  width: 650px;
+  height: 300px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    115deg,
+    rgba(241,177,45,.23),
+    rgba(1,165,77,.13),
+    rgba(29,95,130,.12)
+  );
+
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+
+/* 4. KARTU ETIKA */
+.s11 .ethics-grid {
+  align-items: stretch;
+  gap: 26px;
+}
+
+.s11 .ethics-grid .card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  height: 158px;
+  padding: 26px 28px;
+
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(44,54,139,.08);
+  border-radius: 15px;
+
+  box-shadow:
+    0 3px 8px rgba(22,27,63,.035),
+    0 13px 28px rgba(22,27,63,.075);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+
+/* Aksen warna bagian atas kartu */
+.s11 .ethics-grid .card::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  left: 0;
+  right: 0;
+  top: 0;
+
+  height: 6px;
+  background: var(--accent, var(--navy));
+}
+
+
+/* Ornamen transparan di dalam kartu */
+.s11 .ethics-grid .card::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+
+  width: 110px;
+  height: 110px;
+
+  right: -38px;
+  bottom: -60px;
+
+  border-radius: 35% 65% 50% 50%;
+  background: var(--accent, var(--navy));
+  opacity: .055;
+
+  transform: rotate(35deg);
+  pointer-events: none;
+}
+
+
+/* Pastikan tulisan di atas ornamen kartu */
+.s11 .ethics-grid .card > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Variasi warna lembut masing-masing kartu */
+.s11 .ethics-grid .card:nth-child(1) {
+  background: linear-gradient(145deg, #FFFFFF, #F3F4FC);
+}
+
+.s11 .ethics-grid .card:nth-child(2) {
+  background: linear-gradient(145deg, #FFFFFF, #EFF7F0);
+}
+
+.s11 .ethics-grid .card:nth-child(3) {
+  background: linear-gradient(145deg, #FFFFFF, #FBF5E9);
+}
+
+.s11 .ethics-grid .card:nth-child(4) {
+  background: linear-gradient(145deg, #FFFFFF, #FBF1EB);
+}
+
+
+/* 5. JUDUL KARTU */
+.s11 .ethics-grid h3 {
+  margin-bottom: 9px;
+
+  font-family: 'Manrope', sans-serif;
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #161B3F;
+}
+
+
+/* 6. DESKRIPSI */
+.s11 .ethics-grid .body {
+  color: #626779;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+
+/* 7. HOVER EFFECT */
+@media (hover: hover) {
+  .s11 .ethics-grid .card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+      0 8px 16px rgba(22,27,63,.055),
+      0 18px 34px rgba(22,27,63,.11);
+  }
+}
+
+/* =========================================================
+   SLIDE 12 — INVESTMENT / PREMIUM FINANCE DESIGN
+   ========================================================= */
+
+.slide.dark.s12 {
+  background-color: #202967 !important;
+  background-image:
+
+    /* Cahaya keemasan di kanan atas */
+    radial-gradient(
+      ellipse 43% 42% at 100% 0%,
+      rgba(241, 177, 45, .27),
+      transparent 73%
+    ),
+
+    /* Cahaya biru di kiri tengah */
+    radial-gradient(
+      ellipse 48% 58% at 0% 43%,
+      rgba(35, 112, 157, .28),
+      transparent 76%
+    ),
+
+    /* Lengkungan dekoratif kiri bawah — dinaikkan */
+    radial-gradient(
+      ellipse 78% 70% at -13% 91%,
+      transparent 0 43%,
+      rgba(241, 177, 45, .52) 43.3% 43.8%,
+      transparent 44.1% 51%,
+      rgba(241, 177, 45, .27) 51.3% 51.8%,
+      transparent 52.1% 60%,
+      rgba(255, 255, 255, .15) 60.3% 60.7%,
+      transparent 61%
+    ),
+
+    /* Lapisan gelombang kiri bawah */
+    radial-gradient(
+      ellipse 66% 57% at 1% 100%,
+      rgba(241, 177, 45, .16) 0 38%,
+      transparent 38.5%
+    ),
+
+    radial-gradient(
+      ellipse 60% 52% at 13% 104%,
+      rgba(0, 165, 103, .22) 0 43%,
+      transparent 43.5%
+    ),
+
+    /* Lengkungan tambahan di sisi kanan */
+    radial-gradient(
+      ellipse 47% 78% at 111% 51%,
+      transparent 0 54%,
+      rgba(241, 177, 45, .30) 54.3% 54.8%,
+      transparent 55.1% 64%,
+      rgba(255, 255, 255, .13) 64.3% 64.8%,
+      transparent 65.1% 73%
+    ),
+
+    /* Aksen gelombang kanan bawah */
+    radial-gradient(
+      ellipse 63% 48% at 108% 108%,
+      rgba(35, 112, 157, .38) 0 42%,
+      transparent 42.5%
+    ),
+
+    /* Garis geometris bagian atas */
+    linear-gradient(
+      135deg,
+      transparent 0 76%,
+      rgba(241, 177, 45, .13) 76.2% 78.5%,
+      transparent 78.7%
+    ),
+
+    /* Garis diagonal sisi kiri */
+    linear-gradient(
+      42deg,
+      transparent 0 12%,
+      rgba(255, 255, 255, .055) 12.2% 12.5%,
+      transparent 12.7%
+    ),
+
+    /* Warna dasar */
+    linear-gradient(
+      125deg,
+      #202967 0%,
+      #303B91 48%,
+      #192451 100%
+    ) !important;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+
+/* AREA PERHITUNGAN INVESTASI */
+.s12 .price-row {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 298px;
+  display: flex;
+  align-items: stretch;
+}
+
+
+/* KOTAK HARGA */
+.s12 .price-box {
+  flex: 1;
+  height: 143.7px;
+  padding: 26px 33px;
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, .09);
+  border: 1px solid rgba(255, 255, 255, .13);
+
+  box-shadow:
+    0 12px 28px rgba(5, 10, 40, .20),
+    inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+
+.s12 .price-box strong {
+  display: block;
+  font-size: 46.7px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -.6px;
+  color: var(--paper);
+}
+
+.s12 .price-box p {
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #D7DBF2;
+}
+
+
+/* KOTAK HASIL */
+.s12 .price-box.result {
+  background: linear-gradient(
+    135deg,
+    #F7D77A,
+    #EFB12D
+  );
+
+  border: 1px solid rgba(255, 239, 185, .75);
+
+  box-shadow:
+    0 14px 30px rgba(241, 177, 45, .23),
+    inset 0 1px 0 rgba(255, 255, 255, .48);
+}
+
+.s12 .price-box.result strong {
+  color: var(--ink);
+}
+
+.s12 .price-box.result p {
+  color: #3E3413;
+}
+
+
+/* SIMBOL OPERASI */
+.s12 .operator {
+  flex: 0 0 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 53px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+}
+
+
+/* CALLOUT BIAYA BULANAN */
+.s12 .s12-callout {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 481px;
+  height: 154px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 33px;
+
+  border-radius: 13px;
+  background: var(--paper);
+  color: var(--ink);
+
+  box-shadow:
+    0 16px 35px rgba(5, 10, 40, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.s12 .big-number {
+  flex: 0 0 auto;
+  font-size: 86.7px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -3px;
+  color: #0A7A44;
+}
+
+.s12 .big-number .approx {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: .6em;
+  letter-spacing: 0;
+  vertical-align: .18em;
+}
+
+.s12 .s12-callout p {
+  font-size: 26.7px;
+  line-height: 1.35;
+  color: #4B5060;
+}
+
+/* SLIDE 12 — STRONGER CARD SHADOW */
+
+.slide.dark.s12 .price-box {
+  position: relative;
+  box-shadow:
+    0 8px 12px rgba(0, 0, 0, .16),
+    0 18px 32px rgba(0, 0, 0, .24),
+    inset 0 1px 0 rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .20);
+}
+
+.slide.dark.s12 .price-box.result {
+  box-shadow:
+    0 9px 15px rgba(0, 0, 0, .18),
+    0 20px 35px rgba(241, 177, 45, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .55);
+}
+
+.slide.dark.s12 .s12-callout {
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, .18),
+    0 22px 40px rgba(0, 0, 0, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+/* SLIDE 12 — INTERACTIVE HOVER EFFECT */
+
+.slide.dark.s12 .price-box {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+.slide.dark.s12 .price-box:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 15px 25px rgba(0, 0, 0, .22),
+    0 25px 40px rgba(0, 0, 0, .28);
+
+  border-color: rgba(255, 255, 255, .45);
+}
+
+.slide.dark.s12 .price-box.result:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 16px 28px rgba(0, 0, 0, .22),
+    0 28px 45px rgba(241, 177, 45, .32);
+}
+
+.slide.dark.s12 .s12-callout {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.slide.dark.s12 .s12-callout:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 18px 32px rgba(0, 0, 0, .22),
+    0 30px 45px rgba(0, 0, 0, .25);
+}
+
+/* ============================================================
+   13 · BAGI HASIL — PREMIUM FINANCIAL INFOGRAPHIC
+   ============================================================ */
+
+.slide.s13 {
+  background-color: #F8F5EC;
+  background-image:
+    radial-gradient(
+      ellipse 43% 55% at 100% 0%,
+      rgba(1, 165, 77, .12),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 48% 55% at 0% 100%,
+      rgba(241, 177, 45, .15),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 48% 70% at 108% 100%,
+      rgba(44, 54, 139, .10),
+      transparent 70%
+    ),
+    linear-gradient(
+      135deg,
+      #FBF9F2 0%,
+      #F4F0E5 100%
+    );
+}
+
+/* SPLIT BAR */
+.slide.s13 .split-bar {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 241px;
+  height: 125px;
+
+  display: flex;
+  border-radius: 15px;
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 24px rgba(29, 39, 78, .16),
+    0 4px 8px rgba(29, 39, 78, .08);
+}
+
+.slide.s13 .split-bar > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 27px;
+  transition: filter .3s ease;
+}
+
+.slide.s13 .split-bar > div:hover {
+  filter: brightness(1.09);
+}
+
+.slide.s13 .split-green {
+  flex: 40;
+  background: linear-gradient(135deg, #01A54D, #087A43);
+  color: #FFFFFF;
+}
+
+.slide.s13 .split-gold {
+  flex: 25;
+  background: linear-gradient(135deg, #F8D978, #EFB12D);
+  color: #252B50;
+}
+
+.slide.s13 .split-navy {
+  flex: 35;
+  background: linear-gradient(135deg, #39469D, #202967);
+  color: #FFFFFF;
+}
+
+.slide.s13 .split-bar strong {
+  font-size: 46.7px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.slide.s13 .split-bar span {
+  margin-top: 7px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* SHARE CARDS */
+.slide.s13 .share-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 406px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.slide.s13 .share-grid .card {
+  height: 242px;
+  padding: 32px 27px 24px;
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, .94);
+  border: 1px solid rgba(44, 54, 139, .09);
+
+  box-shadow:
+    0 8px 16px rgba(31, 42, 83, .08),
+    0 18px 32px rgba(31, 42, 83, .09);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+/* HOVER EFFECT */
+.slide.s13 .share-grid .card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 15px 25px rgba(31, 42, 83, .13),
+    0 25px 40px rgba(31, 42, 83, .16);
+
+  border-color: rgba(44, 54, 139, .20);
+}
+
+/* CARD 1 — PERSYARIKATAN */
+.slide.s13 .share-grid .card:nth-child(1) {
+  border-top: 5px solid #01A54D;
+  background:
+    linear-gradient(150deg, #FFFFFF 0%, #F0FAF3 100%);
+}
+
+/* CARD 2 — SEKOLAH / GURU */
+.slide.s13 .share-grid .card:nth-child(2) {
+  border-top: 5px solid #EFB12D;
+  background:
+    linear-gradient(150deg, #FFFFFF 0%, #FFF9E9 100%);
+}
+
+/* CARD 3 — BEEHIVE */
+.slide.s13 .share-grid .card:nth-child(3) {
+  border-top: 5px solid #2C368B;
+  background:
+    linear-gradient(150deg, #FFFFFF 0%, #F0F2FC 100%);
+}
+
+/* LABEL */
+.slide.s13 .share-label {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  color: #12864A;
+  text-transform: uppercase;
+}
+
+.slide.s13 .share-grid .card:nth-child(2) .share-label {
+  color: #A96C08;
+}
+
+.slide.s13 .share-grid .card:nth-child(3) .share-label {
+  color: #2C368B;
+}
+
+/* AMOUNTS */
+.slide.s13 .amount {
+  display: block;
+  margin: 9px 0 7px;
+  font-size: 46.7px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.slide.s13 .green-text {
+  color: #0A7A44;
+}
+
+.slide.s13 .orange-text {
+  color: #B9780D;
+}
+
+.slide.s13 .navy-text {
+  color: #2C368B;
+}
+
+/* SUBTEXT */
+.slide.s13 .share-sub {
+  margin-bottom: 5px;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #252B50;
+}
+
+/* DESCRIPTION */
+.slide.s13 .share-grid .body {
+  color: #555B6B;
+}
+
+/* FOOTER */
+.slide.s13 .s-footer {
+  color: #666B79;
+}
+
+/* SLIDE 13 — FORCE BACKGROUND UPDATE */
+
+section.slide.paper.s13 {
+  background-color: #F8F5EC !important;
+
+  background-image:
+    radial-gradient(
+      ellipse 48% 55% at 100% 0%,
+      rgba(1, 165, 77, .16),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 55% 60% at 0% 100%,
+      rgba(241, 177, 45, .20),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 45% 65% at 108% 100%,
+      rgba(44, 54, 139, .14),
+      transparent 70%
+    ),
+    linear-gradient(
+      135deg,
+      #FBF9F2 0%,
+      #F0EBDD 100%
+    ) !important;
+
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+}
+
+/* ============================================================
+   SLIDE 13 — MODERN GEOMETRIC EDITORIAL
+   ============================================================ */
+
+section.slide.paper.s13 {
+  background-color: #F8F5EC !important;
+
+  background-image:
+
+    /* Bidang diagonal navy di kanan atas */
+    linear-gradient(
+      135deg,
+      transparent 0 76%,
+      rgba(44, 54, 139, .13) 76.2% 82%,
+      transparent 82.2%
+    ),
+
+    /* Bidang emas kanan atas */
+    linear-gradient(
+      135deg,
+      transparent 0 84%,
+      rgba(241, 177, 45, .65) 84.2% 88%,
+      transparent 88.2%
+    ),
+
+    /* Bidang hijau kiri bawah */
+    linear-gradient(
+      315deg,
+      transparent 0 80%,
+      rgba(1, 165, 77, .18) 80.2% 88%,
+      transparent 88.2%
+    ),
+
+    /* Garis diagonal tipis kiri */
+    linear-gradient(
+      45deg,
+      transparent 0 13%,
+      rgba(44, 54, 139, .16) 13.2% 13.5%,
+      transparent 13.7% 18%,
+      rgba(241, 177, 45, .45) 18.2% 18.5%,
+      transparent 18.7%
+    ),
+
+    /* Bidang transparan kanan bawah */
+    linear-gradient(
+      225deg,
+      transparent 0 87%,
+      rgba(44, 54, 139, .09) 87.2% 94%,
+      transparent 94.2%
+    ),
+
+    /* Geometric accent kiri atas */
+    linear-gradient(
+      135deg,
+      rgba(1, 165, 77, .10) 0 7%,
+      transparent 7.2% 100%
+    ),
+
+    /* Dasar cream */
+    linear-gradient(
+      135deg,
+      #FBF9F2 0%,
+      #F2EFE5 100%
+    ) !important;
+
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+}
+
+/* ============================================================
+   14 · SKEMA BERTINGKAT
+   EXECUTIVE DATA DASHBOARD
+   ============================================================ */
+
+/* BACKGROUND */
+section.slide.paper.s14 {
+  background-color: #F7F5ED !important;
+  background-image:
+    linear-gradient(
+      125deg,
+      transparent 0 77%,
+      rgba(44, 54, 139, .09) 77.2% 83%,
+      transparent 83.2%
+    ),
+    linear-gradient(
+      125deg,
+      transparent 0 85%,
+      rgba(241, 177, 45, .32) 85.2% 89%,
+      transparent 89.2%
+    ),
+    radial-gradient(
+      ellipse 50% 60% at 0% 100%,
+      rgba(1, 165, 77, .13),
+      transparent 72%
+    ),
+    linear-gradient(135deg, #FBF9F2, #F0EDE3) !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+}
+
+/* TABLE CONTAINER */
+.slide.s14 .table-wrap {
+  position: absolute;
+  left: 108px;
+  right: 107px;
+  top: 300px;
+
+  border-radius: 13px;
+  overflow: hidden;
+
+  background: #FFFFFF;
+  border: 1px solid rgba(44, 54, 139, .12);
+
+  box-shadow:
+    0 10px 22px rgba(31, 42, 83, .10),
+    0 22px 40px rgba(31, 42, 83, .08);
+}
+
+/* TABLE */
+.slide.s14 .benefit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 20px;
+  color: #252B50;
+}
+
+/* TABLE CELLS */
+.slide.s14 .benefit-table th,
+.slide.s14 .benefit-table td {
+  height: 46px;
+  padding: 0 15px;
+  border: 1px solid #E8E9EE;
+  transition: background .2s ease;
+}
+
+/* HEADER */
+.slide.s14 .benefit-table thead th {
+  height: 58px;
+  background: linear-gradient(135deg, #303B91, #202967);
+  color: #FFFFFF;
+
+  font-size: 19px;
+  font-weight: 700;
+  text-align: right;
+
+  border-color: rgba(255, 255, 255, .15);
+}
+
+.slide.s14 .benefit-table thead th:first-child {
+  text-align: left;
+}
+
+/* ALTERNATING ROWS */
+.slide.s14 .benefit-table tbody tr:nth-child(odd) {
+  background: #FFFFFF;
+}
+
+.slide.s14 .benefit-table tbody tr:nth-child(even) {
+  background: #F4F6FA;
+}
+
+/* FIRST COLUMN */
+.slide.s14 .benefit-table tbody th {
+  text-align: left;
+  font-weight: 700;
+  color: #303B91;
+}
+
+/* NUMBERS */
+.slide.s14 .benefit-table tbody td {
+  text-align: right;
+  font-weight: 500;
+  color: #454B5D;
+}
+
+/* TOTAL COLUMN */
+.slide.s14 .benefit-table thead th:last-child {
+  background: linear-gradient(135deg, #087A43, #01A54D);
+}
+
+.slide.s14 .benefit-table tbody td:last-child {
+  color: #087A43;
+  font-weight: 800;
+  background: rgba(1, 165, 77, .055);
+}
+
+/* FINAL ROW */
+.slide.s14 .benefit-table .total-row th,
+.slide.s14 .benefit-table .total-row td {
+  background: linear-gradient(90deg, #FFF4D4, #FCE9B0);
+  border-top: 2px solid #EFB12D;
+  border-bottom: 2px solid #EFB12D;
+}
+
+.slide.s14 .benefit-table .total-row th {
+  color: #80560A;
+  font-weight: 800;
+}
+
+.slide.s14 .benefit-table .total-row td {
+  color: #76500B;
+  font-weight: 800;
+}
+
+.slide.s14 .benefit-table .total-row td:last-child {
+  background: #F3D77E;
+  color: #24316E;
+  font-size: 21px;
+}
+
+/* ROW HOVER */
+.slide.s14 .benefit-table tbody tr {
+  transition: background .2s ease;
+}
+
+.slide.s14 .benefit-table tbody tr:not(.total-row):hover {
+  background: #E9F2EC;
+}
+
+.slide.s14 .benefit-table tbody tr:not(.total-row):hover td:last-child {
+  background: #DCEFE2;
+}
+
+/* ASSUMPTION / NOTE BOX */
+.slide.s14 .s14-note {
+  position: absolute;
+  left: 108px;
+  right: 107px;
+  top: 706px;
+
+  padding: 15px 22px 15px 27px;
+
+  background: linear-gradient(
+    110deg,
+    #FFF5D9,
+    #FFF9EB
+  );
+
+  border-left: 6px solid #EFB12D;
+  border-radius: 9px;
+
+  color: #303B91 !important;
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 600;
+
+  box-shadow:
+    0 7px 17px rgba(31, 42, 83, .09);
+}
+
+/* FOOTER */
+.slide.s14 .s-footer {
+  color: #555B6B;
+}
+
+/* ============================================================
+   SLIDE 15 — ILUSTRASI PER SEKOLAH
+   MODERN BUSINESS SHOWCASE
+   ============================================================ */
+
+/* 1. BACKGROUND — ELEGANT GEOMETRIC */
+section.slide.paper.s15 {
+  background-color: #F7F4EA !important;
+  background-image:
+    linear-gradient(135deg,
+      rgba(1,165,77,.13) 0 15%,
+      transparent 15.2%),
+    linear-gradient(135deg,
+      transparent 0 78%,
+      rgba(44,54,139,.08) 78.2% 79%,
+      transparent 79.2%),
+    linear-gradient(135deg,
+      transparent 0 84%,
+      rgba(241,177,45,.30) 84.2% 87%,
+      transparent 87.2%),
+    linear-gradient(315deg,
+      transparent 0 88%,
+      rgba(1,165,77,.10) 88.2% 100%),
+    radial-gradient(
+      ellipse at 85% 12%,
+      rgba(241,177,45,.16),
+      transparent 40%
+    ),
+    linear-gradient(135deg,#FBF9F2,#F0EDE3) !important;
+
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+}
+
+
+/* 2. SCHOOL CARDS — ORIGINAL POSITION */
+.slide.paper.s15 .school-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 298px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 26px;
+}
+
+.slide.paper.s15 .school-grid .card {
+  height: 242px;
+  padding: 26px 27px 22px;
+  box-sizing: border-box;
+
+  background: #FFFFFF !important;
+  border: 1px solid rgba(44,54,139,.10) !important;
+  border-top: none !important;
+  border-radius: 13px !important;
+
+  box-shadow:
+    inset 0 5px 0 #F1B12D,
+    0 8px 22px rgba(32,41,103,.09) !important;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease !important;
+}
+
+/* DIFFERENT ACCENT COLORS */
+.slide.paper.s15 .school-grid .card:nth-child(2) {
+  box-shadow:
+    inset 0 5px 0 #01A54D,
+    0 8px 22px rgba(32,41,103,.09) !important;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(3) {
+  box-shadow:
+    inset 0 5px 0 #2C368B,
+    0 8px 22px rgba(32,41,103,.09) !important;
+}
+
+
+/* 3. CARD HOVER EFFECT */
+.slide.paper.s15 .school-grid .card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow:
+    inset 0 5px 0 #F1B12D,
+    0 18px 32px rgba(32,41,103,.17) !important;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(2):hover {
+  box-shadow:
+    inset 0 5px 0 #01A54D,
+    0 18px 32px rgba(32,41,103,.17) !important;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(3):hover {
+  box-shadow:
+    inset 0 5px 0 #2C368B,
+    0 18px 32px rgba(32,41,103,.17) !important;
+}
+
+
+/* 4. SCHOOL CARD TEXT */
+.slide.paper.s15 .school-grid .share-label {
+  color: #5A5F73;
+}
+
+.slide.paper.s15 .school-grid .share-sub {
+  font-weight: 400;
+  color: #626779;
+}
+
+.slide.paper.s15 .school-grid .amount {
+  color: #C18416;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(2) .amount {
+  color: #078348;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(3) .amount {
+  color: #2C368B;
+}
+
+.slide.paper.s15 .school-grid .body {
+  margin-top: 10px;
+}
+
+.slide.paper.s15 .school-grid .body b {
+  color: #202967;
+}
+
+
+/* 5. NILAI TAMBAH BOX */
+.slide.paper.s15 .s15-callout {
+  top: 580px;
+  height: 119px;
+
+  background: linear-gradient(
+    110deg,
+    #202967 0%,
+    #303B91 100%
+  ) !important;
+
+  border: none !important;
+  border-left: 6px solid #F1B12D !important;
+  border-radius: 12px !important;
+
+  box-shadow:
+    0 10px 24px rgba(32,41,103,.16) !important;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease !important;
+}
+
+
+/* 6. CALLOUT HOVER EFFECT */
+.slide.paper.s15 .s15-callout:hover {
+  transform: translateY(-7px) !important;
+  box-shadow:
+    0 19px 34px rgba(32,41,103,.25) !important;
+}
+
+
+/* 7. FOOTER */
+.slide.paper.s15 .s-footer {
+  color: #777B88;
+}
+
+/* ============================================================
+   SLIDE 15 — ILUSTRASI PER SEKOLAH
+   MODERN BUSINESS SHOWCASE
+   ============================================================ */
+
+/* 1. BACKGROUND — ELEGANT GEOMETRIC */
+section.slide.paper.s15 {
+  background-color: #F7F4EA !important;
+  background-image:
+    linear-gradient(135deg,
+      rgba(1,165,77,.13) 0 15%,
+      transparent 15.2%),
+    linear-gradient(135deg,
+      transparent 0 78%,
+      rgba(44,54,139,.08) 78.2% 79%,
+      transparent 79.2%),
+    linear-gradient(135deg,
+      transparent 0 84%,
+      rgba(241,177,45,.30) 84.2% 87%,
+      transparent 87.2%),
+    linear-gradient(315deg,
+      transparent 0 88%,
+      rgba(1,165,77,.10) 88.2% 100%),
+    radial-gradient(
+      ellipse at 85% 12%,
+      rgba(241,177,45,.16),
+      transparent 40%
+    ),
+    linear-gradient(135deg,#FBF9F2,#F0EDE3) !important;
+
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+}
+
+
+/* 2. SCHOOL CARDS — ORIGINAL POSITION */
+.slide.paper.s15 .school-grid {
+  position: absolute;
+  left: 107px;
+  right: 107px;
+  top: 298px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 26px;
+}
+
+.slide.paper.s15 .school-grid .card {
+  height: 242px;
+  padding: 26px 27px 22px;
+  box-sizing: border-box;
+
+  background: #FFFFFF !important;
+  border: 1px solid rgba(44,54,139,.10) !important;
+  border-top: none !important;
+  border-radius: 13px !important;
+
+  box-shadow:
+    inset 0 5px 0 #F1B12D,
+    0 8px 22px rgba(32,41,103,.09) !important;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease !important;
+}
+
+/* DIFFERENT ACCENT COLORS */
+.slide.paper.s15 .school-grid .card:nth-child(2) {
+  box-shadow:
+    inset 0 5px 0 #01A54D,
+    0 8px 22px rgba(32,41,103,.09) !important;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(3) {
+  box-shadow:
+    inset 0 5px 0 #2C368B,
+    0 8px 22px rgba(32,41,103,.09) !important;
+}
+
+
+/* 3. CARD HOVER EFFECT */
+.slide.paper.s15 .school-grid .card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow:
+    inset 0 5px 0 #F1B12D,
+    0 18px 32px rgba(32,41,103,.17) !important;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(2):hover {
+  box-shadow:
+    inset 0 5px 0 #01A54D,
+    0 18px 32px rgba(32,41,103,.17) !important;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(3):hover {
+  box-shadow:
+    inset 0 5px 0 #2C368B,
+    0 18px 32px rgba(32,41,103,.17) !important;
+}
+
+
+/* 4. SCHOOL CARD TEXT */
+.slide.paper.s15 .school-grid .share-label {
+  color: #5A5F73;
+}
+
+.slide.paper.s15 .school-grid .share-sub {
+  font-weight: 400;
+  color: #626779;
+}
+
+.slide.paper.s15 .school-grid .amount {
+  color: #C18416;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(2) .amount {
+  color: #078348;
+}
+
+.slide.paper.s15 .school-grid .card:nth-child(3) .amount {
+  color: #2C368B;
+}
+
+.slide.paper.s15 .school-grid .body {
+  margin-top: 10px;
+}
+
+.slide.paper.s15 .school-grid .body b {
+  color: #202967;
+}
+
+
+/* 5. NILAI TAMBAH BOX */
+.slide.paper.s15 .s15-callout {
+  top: 580px;
+  height: 119px;
+
+  background: linear-gradient(
+    110deg,
+    #202967 0%,
+    #303B91 100%
+  ) !important;
+
+  border: none !important;
+  border-left: 6px solid #F1B12D !important;
+  border-radius: 12px !important;
+
+  box-shadow:
+    0 10px 24px rgba(32,41,103,.16) !important;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease !important;
+}
+
+
+/* 6. CALLOUT HOVER EFFECT */
+.slide.paper.s15 .s15-callout:hover {
+  transform: translateY(-7px) !important;
+  box-shadow:
+    0 19px 34px rgba(32,41,103,.25) !important;
+}
+
+
+/* 7. FOOTER */
+.slide.paper.s15 .s-footer {
+  color: #777B88;
+}
+
+/* SLIDE 15 — TOP ACCENT COLORS */
+
+/* 300 siswa — Gold */
+section.slide.paper.s15 .school-grid .card:nth-child(1) {
+  --accent: #C18416;
+}
+
+/* 600 siswa — Green */
+section.slide.paper.s15 .school-grid .card:nth-child(2) {
+  --accent: #078348;
+}
+
+/* 1.000 siswa — Navy */
+section.slide.paper.s15 .school-grid .card:nth-child(3) {
+  --accent: #2C368B;
+}
+
+/* ============================================================
+   SLIDE 16 — DYNAMIC PROJECT JOURNEY
+   ============================================================ */
+
+/* BACKGROUND: LAYERED FLOW */
+section.slide.paper.s16 {
+  background:
+    radial-gradient(ellipse at 8% 95%, rgba(241,177,45,.17), transparent 36%),
+    radial-gradient(ellipse at 95% 88%, rgba(1,165,77,.13), transparent 34%),
+    linear-gradient(145deg, #FFFDF7 0%, #F5F3E9 100%);
+  overflow: hidden;
+}
+
+section.slide.paper.s16::before {
+  content: "";
+  position: absolute;
+  width: 950px;
+  height: 330px;
+  left: -130px;
+  bottom: -205px;
+  border: 2px solid rgba(44,54,139,.14);
+  border-radius: 50%;
+  transform: rotate(-9deg);
+  box-shadow:
+    0 -18px 0 -1px rgba(255,255,255,.0),
+    0 -20px 0 -1px rgba(241,177,45,.18),
+    0 -39px 0 -1px rgba(255,255,255,.0),
+    0 -41px 0 -1px rgba(1,165,77,.13);
+  pointer-events: none;
+}
+
+section.slide.paper.s16::after {
+  content: "";
+  position: absolute;
+  width: 560px;
+  height: 210px;
+  right: -170px;
+  bottom: 35px;
+  border: 2px solid rgba(1,165,77,.18);
+  border-radius: 50%;
+  transform: rotate(-24deg);
+  box-shadow:
+    0 15px 0 -1px rgba(255,255,255,0),
+    0 17px 0 -1px rgba(44,54,139,.12),
+    0 32px 0 -1px rgba(255,255,255,0),
+    0 34px 0 -1px rgba(241,177,45,.18);
+  pointer-events: none;
+}
+
+/* TIMELINE */
+section.slide.paper.s16 .roadmap-line {
+  top: 241px;
+  height: 3px;
+  border-radius: 10px;
+  opacity: .65;
+}
+
+/* FIVE CARDS */
+section.slide.paper.s16 .roadmap {
+  top: 284px;
+  align-items: stretch;
+  gap: 17px;
+  z-index: 2;
+}
+
+section.slide.paper.s16 .roadmap li {
+  --step-color: #2C368B;
+
+  position: relative;
+  align-self: start;
+  min-width: 0;
+  min-height: 225px;
+  height: auto;
+  padding: 48px 17px 23px;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(44,54,139,.09);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(30,39,80,.09);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+section.slide.paper.s16 .roadmap li:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 30px rgba(30,39,80,.15);
+}
+
+/* ACCENT LINE */
+section.slide.paper.s16 .roadmap li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 12px 12px 0 0;
+  background: var(--step-color);
+}
+
+/* COLOR MATCHING */
+section.slide.paper.s16 .roadmap li:nth-child(1) {
+  --step-color: #2C368B;
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(2) {
+  --step-color: #1D5F82;
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(3) {
+  --step-color: #10816F;
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(4) {
+  --step-color: #01A54D;
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(5) {
+  --step-color: #B76B42;
+}
+
+/* NUMBER CIRCLES */
+section.slide.paper.s16 .step-dot {
+  position: absolute;
+  top: -19px;
+  left: 17px;
+  z-index: 3;
+  width: 39px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--step-color);
+  color: white;
+  border: 4px solid #F8F7F0;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(25,35,75,.16);
+}
+
+/* MONTH LABEL */
+section.slide.paper.s16 .roadmap .step-month {
+  margin: 0 0 12px;
+  color: var(--step-color);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* CARD HEADING */
+section.slide.paper.s16 .roadmap h3 {
+  margin: 0 0 10px;
+  color: #20284D;
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+/* CARD DESCRIPTION */
+section.slide.paper.s16 .roadmap .body {
+  margin: 0;
+  color: #656B7C;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* BOTTOM CALLOUT */
+section.slide.paper.s16 .s16-needs {
+  z-index: 2;
+  top: 546px;
+  height: 119px;
+  box-shadow: 0 10px 26px rgba(30,39,80,.13);
+}
+
+/* KEEP FOOTER AND PAGE NUMBER ABOVE DECORATION */
+section.slide.paper.s16 .s-footer,
+section.slide.paper.s16 .page-badge {
+  z-index: 3;
+}
+
+/* SLIDE 16 — LARGE PRESENTATION TYPOGRAPHY */
+
+section.slide.paper.s16 .roadmap .step-month {
+  font-size: 16px !important;
+  margin-bottom: 16px;
+  letter-spacing: 1.2px;
+}
+
+section.slide.paper.s16 .roadmap h3 {
+  font-size: 26px !important;
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+section.slide.paper.s16 .roadmap .body {
+  font-size: 19px !important;
+  line-height: 1.5;
+}
+
+section.slide.paper.s16 .step-dot {
+  font-size: 19px;
+  width: 46px;
+  height: 46px;
+}
+
+section.slide.paper.s16 .s16-needs .callout-label {
+  font-size: 19px !important;
+}
+
+section.slide.paper.s16 .s16-needs .callout-text {
+  font-size: 19px !important;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   SLIDE 16 — EXECUTIVE JOURNEY / BOLD PREMIUM
+   ============================================================ */
+
+/* 1. BACKGROUND */
+section.slide.paper.s16 {
+  background:
+    radial-gradient(ellipse at 4% 100%, rgba(241,177,45,.22), transparent 34%),
+    radial-gradient(ellipse at 100% 90%, rgba(1,165,77,.17), transparent 35%),
+    linear-gradient(135deg, #FFFDF7 0%, #F2F0E6 100%);
+  overflow: hidden;
+}
+
+/* Decorative flowing curves */
+section.slide.paper.s16::before {
+  content: "";
+  position: absolute;
+  width: 1100px;
+  height: 390px;
+  left: -160px;
+  bottom: -265px;
+  border: 2px solid rgba(44,54,139,.16);
+  border-radius: 50%;
+  transform: rotate(-8deg);
+  box-shadow:
+    0 -18px 0 -1px rgba(241,177,45,.22),
+    0 -38px 0 -1px rgba(255,255,255,.8),
+    0 -58px 0 -1px rgba(1,165,77,.16),
+    0 -78px 0 -1px rgba(44,54,139,.08);
+  pointer-events: none;
+}
+
+section.slide.paper.s16::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 260px;
+  right: -190px;
+  bottom: 40px;
+  border: 2px solid rgba(1,165,77,.2);
+  border-radius: 50%;
+  transform: rotate(-28deg);
+  box-shadow:
+    0 18px 0 -1px rgba(241,177,45,.2),
+    0 36px 0 -1px rgba(44,54,139,.12),
+    0 54px 0 -1px rgba(255,255,255,.7);
+  pointer-events: none;
+}
+
+/* 2. TIMELINE PATH */
+section.slide.paper.s16 .roadmap-line {
+  top: 252px;
+  height: 7px;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    #2C368B 0%,
+    #1D5F82 27%,
+    #10816F 53%,
+    #01A54D 77%,
+    #B76B42 100%
+  );
+  box-shadow: 0 4px 12px rgba(44,54,139,.14);
+  opacity: 1;
+}
+
+/* 3. ROADMAP LAYOUT */
+section.slide.paper.s16 .roadmap {
+  top: 292px;
+  gap: 17px;
+  align-items: stretch;
+  z-index: 2;
+}
+
+/* 4. CARDS */
+section.slide.paper.s16 .roadmap li {
+  --step-color: #2C368B;
+
+  position: relative;
+  align-self: start;
+  min-width: 0;
+  min-height: 230px;
+  height: auto;
+  padding: 53px 18px 25px;
+  border: 1px solid rgba(44,54,139,.08);
+  border-radius: 15px;
+  background: #FFFFFF;
+  box-shadow: 0 9px 24px rgba(29,39,75,.10);
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s16 .roadmap li:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 19px 34px rgba(29,39,75,.17);
+}
+
+/* Alternating card treatments */
+section.slide.paper.s16 .roadmap li:nth-child(1) {
+  --step-color: #2C368B;
+  background: linear-gradient(155deg, #FFFFFF 65%, #EEF0FA 100%);
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(2) {
+  --step-color: #1D5F82;
+  background: linear-gradient(155deg, #FFFFFF 65%, #EAF3F6 100%);
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(3) {
+  --step-color: #10816F;
+  background: linear-gradient(155deg, #FFFFFF 65%, #EAF5F1 100%);
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(4) {
+  --step-color: #01A54D;
+  background: linear-gradient(155deg, #FFFFFF 65%, #EAF6ED 100%);
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(5) {
+  --step-color: #B76B42;
+  background: linear-gradient(155deg, #FFFFFF 65%, #F9EEE7 100%);
+}
+
+/* Top accent */
+section.slide.paper.s16 .roadmap li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  border-radius: 15px 15px 0 0;
+  background: var(--step-color);
+}
+
+/* Large decorative numbers */
+section.slide.paper.s16 .roadmap li::after {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  font-size: 76px;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--step-color);
+  opacity: .075;
+  pointer-events: none;
+}
+
+section.slide.paper.s16 .roadmap li:nth-child(1)::after { content: "01"; }
+section.slide.paper.s16 .roadmap li:nth-child(2)::after { content: "02"; }
+section.slide.paper.s16 .roadmap li:nth-child(3)::after { content: "03"; }
+section.slide.paper.s16 .roadmap li:nth-child(4)::after { content: "04"; }
+section.slide.paper.s16 .roadmap li:nth-child(5)::after { content: "05"; }
+
+/* 5. NUMBER BADGES */
+section.slide.paper.s16 .step-dot {
+  position: absolute;
+  top: -24px;
+  left: 17px;
+  z-index: 3;
+  width: 51px;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 5px solid #F7F5EC;
+  background: var(--step-color);
+  color: #FFFFFF;
+  font-size: 21px;
+  font-weight: 900;
+  box-shadow: 0 5px 13px rgba(25,35,75,.2);
+}
+
+/* 6. TYPOGRAPHY */
+section.slide.paper.s16 .roadmap .step-month {
+  margin: 0 0 15px;
+  color: var(--step-color);
+  font-size: 16px !important;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+section.slide.paper.s16 .roadmap h3 {
+  margin: 0 0 13px;
+  color: #20284D;
+  font-size: 25px !important;
+  line-height: 1.25;
+  font-weight: 900;
+}
+
+section.slide.paper.s16 .roadmap .body {
+  margin: 0;
+  color: #555E72;
+  font-size: 18px !important;
+  line-height: 1.5;
+}
+
+/* 7. BOTTOM CALLOUT */
+section.slide.paper.s16 .s16-needs {
+  top: 546px;
+  height: 119px;
+  z-index: 2;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(29,39,75,.17);
+}
+
+section.slide.paper.s16 .s16-needs .callout-label {
+  flex-basis: 246px;
+  font-size: 19px !important;
+  line-height: 1.25;
+}
+
+section.slide.paper.s16 .s16-needs .callout-text {
+  font-size: 18px !important;
+  line-height: 1.5;
+}
+
+/* 8. FOOTER */
+section.slide.paper.s16 .s-footer,
+section.slide.paper.s16 .page-badge {
+  z-index: 3;
+}
+
+/* ============================================================
+   SLIDE 17 — BEEHIVE DIGITAL ACCESS
+   ============================================================ */
+
+/* 1. PREMIUM BACKGROUND */
+section.slide.paper.s17.qr-slide {
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 66%,
+      rgba(241,177,45,.16), transparent 34%),
+    radial-gradient(ellipse at 4% 90%,
+      rgba(1,165,77,.13), transparent 32%),
+    linear-gradient(135deg, #FFFDF7 0%, #F2F0E7 100%);
+}
+
+/* Decorative geometric corner */
+section.slide.paper.s17.qr-slide::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 540px;
+  height: 540px;
+  top: -330px;
+  right: -160px;
+  border-radius: 50%;
+  border: 2px solid rgba(44,54,139,.14);
+  box-shadow:
+    0 22px 0 rgba(255,255,255,0),
+    0 24px 0 rgba(241,177,45,.25),
+    0 46px 0 rgba(255,255,255,0),
+    0 48px 0 rgba(1,165,77,.13);
+  pointer-events: none;
+}
+
+/* Flowing lower decoration */
+section.slide.paper.s17.qr-slide::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 1100px;
+  height: 280px;
+  left: -160px;
+  bottom: -205px;
+  border-radius: 50%;
+  border: 2px solid rgba(44,54,139,.14);
+  transform: rotate(-5deg);
+  box-shadow:
+    0 -20px 0 rgba(255,255,255,0),
+    0 -22px 0 rgba(241,177,45,.23),
+    0 -42px 0 rgba(255,255,255,0),
+    0 -44px 0 rgba(1,165,77,.16);
+  pointer-events: none;
+}
+
+/* 2. HEADING */
+section.slide.paper.s17 .qr-kicker {
+  top: 103px;
+  color: #078348;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+section.slide.paper.s17 .qr-title {
+  top: 145px;
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: #252D5B;
+  text-shadow: 0 3px 0 rgba(44,54,139,.05);
+}
+
+section.slide.paper.s17 .qr-title span {
+  color: #078348;
+}
+
+section.slide.paper.s17 .qr-rule {
+  top: 238px;
+  width: 112px;
+  height: 6px;
+  background: linear-gradient(90deg, #F1B12D, #078348);
+  box-shadow: 0 3px 10px rgba(241,177,45,.25);
+}
+
+section.slide.paper.s17 .qr-lead {
+  top: 266px;
+  font-size: 25px;
+  font-weight: 600;
+  color: #555D76;
+}
+
+/* 3. QR HALO */
+section.slide.paper.s17 .qr-halo {
+  top: 566px;
+  width: 535px;
+  height: 535px;
+  border: 2px solid rgba(44,54,139,.10);
+  box-shadow:
+    0 0 0 16px rgba(255,255,255,.22),
+    0 0 0 34px rgba(241,177,45,.06);
+}
+
+section.slide.paper.s17 .qr-halo::before {
+  inset: 25px;
+  border: 1px dashed rgba(1,165,77,.25);
+}
+
+section.slide.paper.s17 .qr-halo::after {
+  inset: 54px;
+  border: 2px solid rgba(241,177,45,.25);
+}
+
+/* 4. QR CARD */
+section.slide.paper.s17 .qr-card {
+  top: 348px;
+  width: 432px;
+  height: 432px;
+  padding: 17px;
+  border: 2px solid rgba(241,177,45,.65);
+  border-radius: 30px;
+  background: #FFFFFF;
+  box-shadow:
+    0 0 0 9px rgba(255,255,255,.55),
+    0 5px 12px rgba(22,27,63,.06),
+    0 28px 65px rgba(22,27,63,.18);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+section.slide.paper.s17 .qr-card:hover {
+  transform: translateX(-50%) translateY(-7px);
+  box-shadow:
+    0 0 0 10px rgba(255,255,255,.7),
+    0 12px 25px rgba(22,27,63,.08),
+    0 35px 75px rgba(22,27,63,.21);
+}
+
+section.slide.paper.s17 .qr-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 17px;
+  background: #FFFFFF;
+}
+
+/* 5. FOOTER */
+section.slide.paper.s17 .s-footer,
+section.slide.paper.s17 .page-badge {
+  z-index: 2;
+}
+
+/* ============================================================
+   SLIDE 18 — THE GRAND FINALE
+   DEEP NAVY × CHAMPAGNE GOLD
+   ============================================================ */
+
+/* 1. DEEP NAVY BACKGROUND */
+section.slide.close#slide-18 {
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 82% 44%,
+      rgba(83, 105, 191, .34),
+      transparent 39%
+    ),
+    radial-gradient(
+      ellipse at 12% 100%,
+      rgba(1, 165, 77, .18),
+      transparent 35%
+    ),
+    linear-gradient(
+      125deg,
+      #171F58 0%,
+      #252F78 48%,
+      #18245F 100%
+    );
+  color: #FFFDF5;
+}
+
+/* 2. LARGE ABSTRACT GOLD CURVES */
+section.slide.close#slide-18::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 940px;
+  height: 940px;
+  right: -355px;
+  top: -315px;
+  border: 1px solid rgba(241, 177, 45, .48);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 24px rgba(255,255,255,0),
+    0 0 0 25px rgba(241,177,45,.16),
+    0 0 0 55px rgba(255,255,255,0),
+    0 0 0 56px rgba(1,165,77,.15),
+    0 0 0 88px rgba(255,255,255,0),
+    0 0 0 89px rgba(241,177,45,.10);
+  pointer-events: none;
+}
+
+/* 3. LOWER FLOWING SHAPES */
+section.slide.close#slide-18::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 1100px;
+  height: 430px;
+  left: -380px;
+  bottom: -315px;
+  border: 1px solid rgba(241,177,45,.30);
+  border-radius: 50%;
+  transform: rotate(-14deg);
+  box-shadow:
+    0 -22px 0 rgba(255,255,255,0),
+    0 -24px 0 rgba(1,165,77,.18),
+    0 -47px 0 rgba(255,255,255,0),
+    0 -49px 0 rgba(241,177,45,.13);
+  pointer-events: none;
+}
+
+/* 4. COLOR STRIPE */
+section.slide.close#slide-18 .rainbow-stripe {
+  width: 12px;
+  background: linear-gradient(
+    180deg,
+    #F5C65C 0%,
+    #DFA52B 34%,
+    #078348 68%,
+    #5266B5 100%
+  );
+  box-shadow: 4px 0 24px rgba(241,177,45,.15);
+  z-index: 4;
+}
+
+/* 5. LEFT CONTENT */
+section.slide.close#slide-18 .close-content {
+  left: 107px;
+  top: 145px;
+  width: 745px;
+  z-index: 3;
+}
+
+section.slide.close#slide-18 .close-content h2 {
+  font-size: 68px;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  font-weight: 800;
+  color: #FFFDF5;
+  text-shadow: 0 5px 24px rgba(0,0,0,.15);
+}
+
+/* 6. CONTACT INFORMATION */
+section.slide.close#slide-18 .contact-grid {
+  top: 325px;
+  width: 715px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 75px;
+  row-gap: 29px;
+}
+
+section.slide.close#slide-18 .contact-label {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #E9BC59;
+}
+
+section.slide.close#slide-18 .contact-value {
+  margin-top: 7px;
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+section.slide.close#slide-18 .contact-value.small {
+  font-size: 18px;
+  line-height: 1.45;
+  color: #E2E6F7;
+}
+
+/* 7. TAGLINE */
+section.slide.close#slide-18 .tagline {
+  top: 535px;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #F5C65C;
+  text-shadow: 0 3px 15px rgba(241,177,45,.2);
+}
+
+/* 8. COLLAGE VISUAL */
+section.slide.close#slide-18 .close-visual {
+  left: 875px;
+  top: 145px;
+  width: 610px;
+  z-index: 2;
+  padding: 14px;
+  border: 1px solid rgba(241,177,45,.42);
+  border-radius: 25px;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.13),
+    rgba(255,255,255,.035)
+  );
+  box-shadow:
+    0 25px 65px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+section.slide.close#slide-18 .close-visual img {
+  display: block;
+  width: 100%;
+  border-radius: 15px;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.15));
+}
+
+/* 9. PAGE NUMBER */
+section.slide.close#slide-18 .page-badge {
+  z-index: 5;
+}
+
+/* ============================================================
+   SLIDE 08 — SYSTEM FLOW REFINEMENT
+   SPACING + INTERACTIVE CARDS
+   ============================================================ */
+
+/* 1. SOURCE DATA CARD */
+section.slide.paper.s8 .source-card {
+  z-index: 2;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+  box-shadow: 0 8px 22px rgba(22,27,63,.07);
+}
+
+section.slide.paper.s8 .source-card:hover {
+  transform: translateY(-8px);
+  border-color: #078348;
+  box-shadow: 0 17px 32px rgba(22,27,63,.14);
+}
+
+/* 2. BEEHIVE ENGINE CARD */
+section.slide.paper.s8 .engine-card {
+  z-index: 2;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s8 .engine-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 42px rgba(22,27,63,.28);
+}
+
+/* 3. FIRST FLOW LABEL + ARROW */
+section.slide.paper.s8 .arrow-label-a {
+  left: 443px;
+  top: 386px;
+  width: 160px;
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: center;
+  z-index: 3;
+}
+
+section.slide.paper.s8 .arrow-a {
+  left: 465px;
+  top: 445px;
+  width: 92px;
+  z-index: 1;
+}
+
+/* 4. SECOND FLOW LABEL + ARROW */
+section.slide.paper.s8 .arrow-label-b {
+  left: 940px;
+  top: 386px;
+  width: 155px;
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: center;
+  z-index: 3;
+}
+
+section.slide.paper.s8 .arrow-b {
+  left: 963px;
+  top: 457px;
+  width: 92px;
+  z-index: 1;
+}
+
+/* 5. OUTPUT CARDS */
+section.slide.paper.s8 .output-card {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s8 .output-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 17px 32px rgba(22,27,63,.13);
+}
+
+/* 6. OPTION CARDS */
+section.slide.paper.s8 .option-grid article {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+  box-shadow: 0 7px 18px rgba(22,27,63,.06);
+}
+
+section.slide.paper.s8 .option-grid article:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 17px 30px rgba(22,27,63,.14);
+  border-color: #078348;
+}
+
+/* 7. SMOOTH INTERACTION */
+section.slide.paper.s8 .source-card,
+section.slide.paper.s8 .engine-card,
+section.slide.paper.s8 .output-card,
+section.slide.paper.s8 .option-grid article {
+  cursor: default;
+}
+/* CATATAN PAJAK — SLIDE 14 */
+section.slide.paper.s14 .s14-tax-note {
+  position: absolute;
+  top: 682px;
+  left: 108px;
+  right: 107px;
+  text-align: right;
+  font-size: 14px;
+  font-style: italic;
+  color: #73798C;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   SLIDE 02 — CARD HOVER EFFECT
+   ============================================================ */
+
+/* Tiga kartu statistik */
+section.slide.paper.s2 .s2-cards .card {
+  position: relative;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s2 .s2-cards .card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 34px rgba(22, 27, 63, .15);
+  z-index: 2;
+}
+
+/* Kotak arah kebijakan */
+section.slide.paper.s2 .s2-callout {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s2 .s2-callout:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(22, 27, 63, .13);
+  z-index: 2;
+}
+
+/* ============================================================
+   SLIDE 03 — INTERACTIVE CARD & PHOTO EFFECT
+   ============================================================ */
+
+/* 1. STATISTIC CARDS */
+section.slide.paper.s3 .s3-stats .card {
+  position: relative;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+  box-shadow: 0 7px 18px rgba(22, 27, 63, .07);
+}
+
+section.slide.paper.s3 .s3-stats .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 19px 34px rgba(22, 27, 63, .16);
+  z-index: 2;
+}
+
+/* 2. CLASSROOM PHOTO */
+section.slide.paper.s3 .s3-photo img {
+  transition: transform .5s ease;
+}
+
+section.slide.paper.s3 .s3-photo:hover img {
+  transform: scale(1.035);
+}
+
+/* ============================================================
+   SLIDE 06 — INTERACTIVE HOVER EFFECT
+   ============================================================ */
+
+/* 1. EDUCATION STAGE CARDS */
+section.slide.paper.s6 .stage-grid .card {
+  position: relative;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s6 .stage-grid .card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 34px rgba(22,27,63,.15);
+  z-index: 2;
+}
+
+/* 2. REPORT SNIPPET */
+section.slide.paper.s6 .report-snippet {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s6 .report-snippet:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 38px rgba(120,80,0,.22);
+}
+
+/* 3. REPORT ROWS */
+section.slide.paper.s6 .report-row {
+  transition:
+    background-color .25s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+section.slide.paper.s6 .report-row:hover {
+  transform: translateX(4px);
+  background-color: #FFF9E9;
+  box-shadow: 0 3px 10px rgba(22,27,63,.08);
+}
+
+/* 4. PTMA CARD */
+section.slide.paper.s6 .ptma-card {
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+section.slide.paper.s6 .ptma-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 19px 36px rgba(22,27,63,.14);
+}
+
+/* ============================================================
+   SLIDE 09 — INTERACTIVE HOVER EFFECT
+   ============================================================ */
+
+/* Kartu tahapan pelaksanaan */
+section.slide.paper.s9 .exec-grid .card {
+  position: relative;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+section.slide.paper.s9 .exec-grid .card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 34px rgba(22, 27, 63, .15);
+  z-index: 2;
+}
+
+/* Efek halus pada poin-poin kegiatan */
+section.slide.paper.s9 .bullets li {
+  transition: color .25s ease, transform .25s ease;
+}
+
+section.slide.paper.s9 .exec-grid .card:hover .bullets li {
+  color: #303957;
+}
+
+/* Kotak penjaminan mutu */
+section.slide.paper.s9 .s9-quality {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+section.slide.paper.s9 .s9-quality:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(22, 27, 63, .14);
+}
