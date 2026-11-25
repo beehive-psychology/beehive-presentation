@@ -524,16 +524,22 @@
 
           <ul class="feature-list">
             <li class="accent-green-solid">
-              <h3>Laporan instan</h3>
-              <p class="body">Skoring otomatis; hasil terbaca guru begitu siswa selesai.</p>
+              <button type="button" class="feature-trigger" data-open-feature="laporan" aria-haspopup="dialog">
+                <h3>Laporan instan</h3>
+                <p class="body">Skoring otomatis; hasil terbaca guru begitu siswa selesai.</p>
+                <span class="feature-trigger-hint">Buka contoh laporan <span aria-hidden="true">↗</span></span>
+              </button>
             </li>
             <li class="accent-gold">
               <h3>Pantau langsung</h3>
               <p class="body">Siapa belum mulai, sedang mengerjakan, dan selesai, per kelas.</p>
             </li>
             <li class="accent-navy">
-              <h3>Rekap &amp; cetak</h3>
-              <p class="body">PDF per siswa dan rekap Excel per sesi.</p>
+              <button type="button" class="feature-trigger" data-open-feature="rekap" aria-haspopup="dialog">
+                <h3>Rekap &amp; cetak</h3>
+                <p class="body">Contoh laporan hasil dalam format PDF.</p>
+                <span class="feature-trigger-hint">Buka contoh PDF <span aria-hidden="true">↗</span></span>
+              </button>
             </li>
           </ul>
         </div>
@@ -888,6 +894,48 @@
       </section>
 
     </main>
+  </div>
+
+  <!-- ============================================================
+       FEATURE VIEWER — HALAMAN FITUR DI LUAR 18 SLIDE UTAMA
+  ============================================================ -->
+  <div class="feature-overlay" id="featureOverlay" hidden aria-hidden="true">
+    <section class="feature-viewer" role="dialog" aria-modal="true"
+             aria-labelledby="featureViewerTitle">
+      <header class="feature-viewer-header">
+        <div class="feature-viewer-heading">
+          <span class="feature-viewer-eyebrow">BEEHIVE × MUHAMMADIYAH</span>
+          <h2 id="featureViewerTitle">Contoh laporan</h2>
+          <p id="featureViewerDescription">Pratinjau dokumen fitur.</p>
+        </div>
+        <button type="button" class="feature-close" data-close-feature aria-label="Kembali ke slide 10">
+          <span aria-hidden="true">←</span> Kembali ke presentasi
+        </button>
+      </header>
+
+      <main class="feature-viewer-main">
+        <div class="feature-document-frame" id="featureDocumentFrame">
+          <img class="feature-document-image" id="featureDocumentImage"
+               src="assets/laporan-sesi-01.png" alt="Pratinjau halaman laporan sesi 1">
+          <div class="feature-document-caption">
+            <h3 id="featurePageTitle">Laporan Sesi</h3>
+            <p id="featurePageDescription">Halaman 1 dari 7</p>
+          </div>
+        </div>
+      </main>
+
+      <footer class="feature-viewer-footer">
+        <span class="feature-page-count" id="featurePageCount">01 / 07</span>
+        <div class="feature-page-controls">
+          <button type="button" class="feature-page-button" id="featurePagePrev" disabled>
+            ← Sebelumnya
+          </button>
+          <button type="button" class="feature-page-button is-next" id="featurePageNext">
+            Berikutnya →
+          </button>
+        </div>
+      </footer>
+    </section>
   </div>
 
   <nav class="deck-nav" aria-label="Navigasi presentasi">

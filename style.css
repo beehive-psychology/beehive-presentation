@@ -6195,6 +6195,7 @@ section.slide.paper.s9 .s9-quality:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 30px rgba(22, 27, 63, .14);
 }
+
 /* SLIDE 12 — UKURAN TEKS KOTAK TENGAH */
 
 section.slide.dark.s12 .price-row article.price-box:nth-of-type(2) strong,
@@ -6203,4 +6204,336 @@ section.slide.dark.s12 .price-row article.price-box:nth-of-type(2) p {
   font-weight: 700;
   line-height: 1.2;
   color: var(--paper) !important;
+}
+
+/* ============================================================
+   FEATURE VIEWER — HALAMAN TAMBAHAN DI LUAR HITUNGAN SLIDE
+   ============================================================ */
+
+.feature-overlay[hidden] {
+  display: none !important;
+}
+
+.feature-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 28px;
+  background:
+    radial-gradient(ellipse at 12% 10%, rgba(1,165,77,.16), transparent 34%),
+    radial-gradient(ellipse at 90% 90%, rgba(241,177,45,.18), transparent 36%),
+    rgba(8, 13, 34, .96);
+  backdrop-filter: blur(14px);
+}
+
+.feature-viewer {
+  width: min(1500px, 100%);
+  min-height: min(840px, calc(100vh - 56px));
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 24px;
+  background: #F8F7F1;
+  box-shadow: 0 30px 90px rgba(0,0,0,.34);
+}
+
+.feature-viewer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 25px 34px;
+  color: #fff;
+  background: linear-gradient(110deg, #202967, #2C368B 62%, #087C4A);
+}
+
+.feature-viewer-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+  color: #F1B12D;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.feature-viewer-heading h2 {
+  font: 800 30px/1.15 'Manrope', Arial, sans-serif;
+}
+
+.feature-viewer-heading p {
+  margin-top: 7px;
+  color: rgba(255,255,255,.76);
+  font-size: 14px;
+}
+
+.feature-close,
+.feature-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(255,255,255,.10);
+  font: 700 13px 'DM Sans', Arial, sans-serif;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.feature-close:hover {
+  background: rgba(255,255,255,.2);
+  transform: translateY(-1px);
+}
+
+.feature-viewer-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(44,54,139,.08), transparent 58%),
+    #EEEFF4;
+}
+
+.feature-document-frame {
+  width: min(100%, 1120px);
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 1px solid rgba(44,54,139,.12);
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 16px 48px rgba(22,27,63,.13);
+}
+
+.feature-document-placeholder {
+  width: min(620px, 100%);
+  padding: 52px 36px;
+  text-align: center;
+  border: 1px dashed rgba(44,54,139,.24);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fff, #F8F7F1);
+}
+
+.feature-document-kicker {
+  color: #078348;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.feature-document-placeholder h3 {
+  margin-top: 14px;
+  color: #202967;
+  font: 800 28px/1.2 'Manrope', Arial, sans-serif;
+}
+
+.feature-document-placeholder p {
+  max-width: 430px;
+  margin: 12px auto 0;
+  color: #6B6F7E;
+  font: 15px/1.6 'DM Sans', Arial, sans-serif;
+}
+
+.feature-viewer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 17px 30px;
+  border-top: 1px solid #E4E4E8;
+  background: #fff;
+}
+
+.feature-page-count {
+  color: #202967;
+  font: 800 13px 'DM Sans', Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.feature-page-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.feature-page-button {
+  border-color: #D9DCE8;
+  color: #2C368B;
+  background: #fff;
+}
+
+.feature-page-button:hover:not(:disabled) {
+  background: #F0F2FA;
+  transform: translateY(-1px);
+}
+
+.feature-page-button.is-next {
+  border-color: #078348;
+  color: #fff;
+  background: #078348;
+}
+
+.feature-page-button.is-next:hover:not(:disabled) {
+  background: #066D3D;
+}
+
+.feature-page-button:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+}
+
+.feature-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.feature-trigger:focus-visible {
+  outline: 3px solid #2C368B;
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+.feature-trigger-hint {
+  display: inline-block;
+  margin-top: 8px;
+  color: #078348;
+  font: 800 12px 'DM Sans', Arial, sans-serif;
+  letter-spacing: .2px;
+}
+
+.feature-trigger-hint span {
+  display: inline-block;
+  margin-left: 3px;
+  transition: transform .2s ease;
+}
+
+@media (hover: hover) {
+  .feature-trigger:hover .feature-trigger-hint span {
+    transform: translate(3px, -2px);
+  }
+}
+
+body.feature-view-open {
+  overflow: hidden;
+}
+
+body.feature-view-open .deck-nav,
+body.feature-view-open .progress {
+  visibility: hidden;
+}
+
+@media (max-width: 700px) {
+  .feature-overlay {
+    padding: 10px;
+  }
+
+  .feature-viewer {
+    min-height: calc(100vh - 20px);
+    border-radius: 16px;
+  }
+
+  .feature-viewer-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .feature-viewer-heading h2 {
+    font-size: 24px;
+  }
+
+  .feature-viewer-main {
+    padding: 14px;
+  }
+
+  .feature-document-frame {
+    min-height: 360px;
+    padding: 14px;
+  }
+
+  .feature-document-placeholder {
+    padding: 34px 18px;
+  }
+
+  .feature-viewer-footer {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .feature-page-controls {
+    width: 100%;
+  }
+
+  .feature-page-button {
+    flex: 1;
+    padding: 0 10px;
+  }
+}
+
+
+/* FEATURE VIEWER — DOKUMEN ASLI */
+.feature-document-frame {
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  max-height: calc(100vh - 230px);
+  overflow: auto;
+}
+
+.feature-document-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 310px);
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 28px rgba(20, 25, 60, .12);
+}
+
+.feature-document-caption {
+  width: 100%;
+  text-align: center;
+}
+
+.feature-document-caption h3 {
+  color: #202967;
+  font: 800 15px/1.3 'Manrope', Arial, sans-serif;
+}
+
+.feature-document-caption p {
+  margin-top: 4px;
+  color: #777B89;
+  font: 12px/1.4 'DM Sans', Arial, sans-serif;
+}
+
+@media (max-width: 700px) {
+  .feature-document-frame {
+    max-height: calc(100vh - 255px);
+  }
+
+  .feature-document-image {
+    max-height: calc(100vh - 365px);
+  }
 }

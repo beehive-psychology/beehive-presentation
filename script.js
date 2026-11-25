@@ -12,12 +12,56 @@
   const prevButton = document.querySelector("[data-prev]");
   const nextButton = document.querySelector("[data-next]");
 
+  const featureOverlay = document.getElementById("featureOverlay");
+  const featureTitle = document.getElementById("featureViewerTitle");
+  const featureDescription = document.getElementById("featureViewerDescription");
+  const featurePageTitle = document.getElementById("featurePageTitle");
+  const featurePageDescription = document.getElementById("featurePageDescription");
+  const featureDocumentImage = document.getElementById("featureDocumentImage");
+  const featurePageCount = document.getElementById("featurePageCount");
+  const featurePagePrev = document.getElementById("featurePagePrev");
+  const featurePageNext = document.getElementById("featurePageNext");
+  const featureClose = document.querySelector("[data-close-feature]");
+
   if (!stage || slides.length === 0) return;
 
   const total = slides.length;
   let current = 0;
   let touchStartX = null;
   let touchStartY = null;
+  let activeFeature = null;
+  let activeFeaturePage = 0;
+
+  const featureContent = {
+    laporan: {
+      title: "Laporan Instan",
+      description: "Pratinjau Laporan Sesi — 7 halaman presentasi.",
+      pages: [
+        { title: "Laporan Sesi", image: "assets/laporan-sesi-01.png" },
+        { title: "Kepesertaan & Statistik Kecerdasan", image: "assets/laporan-sesi-02.png" },
+        { title: "Sepuluh Besar IQ", image: "assets/laporan-sesi-03.png" },
+        { title: "Sebaran Tipe Kepribadian", image: "assets/laporan-sesi-04.png" },
+        { title: "Profil Peserta", image: "assets/laporan-sesi-05.png" },
+        { title: "Rekap & Cetak: Unduh Excel dan Lihat Laporan", image: "assets/laporan-sesi-06.png" },
+        { title: "Rekap & Cetak: Laporan Siswa dan Unduh PDF", image: "assets/laporan-sesi-07.png" }
+      ],
+      alt: "Halaman contoh Laporan Sesi"
+    },
+    rekap: {
+      title: "Rekap & Cetak",
+      description: "Pratinjau Contoh Laporan SMA — 7 halaman PDF.",
+      pages: [
+        { title: "Contoh Laporan SMA · Halaman 1", image: "assets/rekap-01.png" },
+        { title: "Contoh Laporan SMA · Halaman 2", image: "assets/rekap-02.png" },
+        { title: "Contoh Laporan SMA · Halaman 3", image: "assets/rekap-03.png" },
+        { title: "Contoh Laporan SMA · Halaman 4", image: "assets/rekap-04.png" },
+        { title: "Contoh Laporan SMA · Halaman 5", image: "assets/rekap-05.png" },
+        { title: "Contoh Laporan SMA · Halaman 6", image: "assets/rekap-06.png" },
+        { title: "Contoh Laporan SMA · Halaman 7", image: "assets/rekap-07.png" }
+      ],
+      alt: "Halaman contoh laporan SMA"
+    }
+  };
 
   const pad = (value) => String(value).padStart(2, "0");
 
@@ -30,6 +74,8 @@
   }
 
   function goTo(index, updateHash = true) {
+    if (activeFeature) closeFeature();
+
     const next = Math.max(0, Math.min(total - 1, index));
 
     slides.forEach((slide, i) => {
@@ -83,12 +129,87 @@
     }
   }
 
+  function renderFeaturePage() {
+    if (!activeFeature || !featureOverlay) return;
+
+    const feature = featureContent[activeFeature];
+    const pageTotal = feature.pages.length;
+
+    const page = feature.pages[activeFeaturePage];
+    featureTitle.textContent = feature.title;
+    featureDescription.textContent = feature.description;
+    featurePageTitle.textContent = page.title;
+    featurePageDescription.textContent = `Halaman ${activeFeaturePage + 1} dari ${pageTotal}`;
+    featureDocumentImage.src = page.image;
+    featureDocumentImage.alt = `${feature.alt}, ${page.title}`;
+    featurePageCount.textContent = `${pad(activeFeaturePage + 1)} / ${pad(pageTotal)}`;
+
+    featurePagePrev.disabled = activeFeaturePage === 0;
+    featurePageNext.disabled = activeFeaturePage === pageTotal - 1;
+  }
+
+  function openFeature(name) {
+    if (!featureContent[name] || !featureOverlay || current !== 9) return;
+
+    activeFeature = name;
+    activeFeaturePage = 0;
+    renderFeaturePage();
+
+    featureOverlay.hidden = false;
+    featureOverlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("feature-view-open");
+    featureClose?.focus();
+  }
+
+  function closeFeature() {
+    if (!featureOverlay || !activeFeature) return;
+
+    const previousFeature = activeFeature;
+    activeFeature = null;
+    featureOverlay.hidden = true;
+    featureOverlay.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("feature-view-open");
+
+    document.querySelector(`[data-open-feature="${previousFeature}"]`)?.focus();
+  }
+
+  function changeFeaturePage(direction) {
+    if (!activeFeature) return;
+
+    const pages = featureContent[activeFeature].pages;
+    activeFeaturePage = Math.max(0, Math.min(pages.length - 1, activeFeaturePage + direction));
+    renderFeaturePage();
+  }
+
   /* ---------------- navigation ---------------- */
 
   prevButton?.addEventListener("click", previous);
   nextButton?.addEventListener("click", next);
 
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-open-feature]");
+    if (trigger) openFeature(trigger.dataset.openFeature);
+  });
+
+  featureClose?.addEventListener("click", closeFeature);
+  featurePagePrev?.addEventListener("click", () => changeFeaturePage(-1));
+  featurePageNext?.addEventListener("click", () => changeFeaturePage(1));
+
   document.addEventListener("keydown", (event) => {
+    if (activeFeature) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeFeature();
+      } else if (event.key === "ArrowRight" || event.key === "PageDown") {
+        event.preventDefault();
+        changeFeaturePage(1);
+      } else if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        changeFeaturePage(-1);
+      }
+      return;
+    }
+
     if (event.altKey || event.ctrlKey || event.metaKey) return;
 
     switch (event.key) {
@@ -126,13 +247,13 @@
   /* ---------------- touch / swipe ---------------- */
 
   stage.addEventListener("pointerdown", (event) => {
-    if (event.pointerType === "mouse") return;
+    if (event.pointerType === "mouse" || activeFeature) return;
     touchStartX = event.clientX;
     touchStartY = event.clientY;
   });
 
   stage.addEventListener("pointerup", (event) => {
-    if (touchStartX === null || touchStartY === null) return;
+    if (activeFeature || touchStartX === null || touchStartY === null) return;
 
     const deltaX = event.clientX - touchStartX;
     const deltaY = event.clientY - touchStartY;
@@ -167,6 +288,6 @@
     goTo(0, false);
   }
 
-  console.log("Beehive Presentation ready · 18 slides");
+  console.log(`Beehive Presentation ready · ${total} slides`);
   console.log("Bee True. Bee You.");
 })();
